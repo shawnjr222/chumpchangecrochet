@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<meta name="theme-color" content="#FBF3E4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23C0392B'/%3E%3Cpath d='M0 8h32M0 24h32M8 0v32M24 0v32' stroke='%23FBF3E4' stroke-opacity='.5' stroke-width='5'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');if('scrollRestoration' in history)history.scrollRestoration='manual'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{{PRELOAD}}<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+{{CSS}}
+</style>
+</head>
+<body>
+<a class="skip" href="{{SKIP_HREF}}">{{SKIP_TEXT}}</a>
+
+<div id="page">
+{{HEADER}}
+
+<main id="top">
+  <!-- OUR STORY: same grid as the home hero, so the two pages feel like one site -->
+  <section class="hero" id="story">
+    <div class="wrap">
+      <div class="hero-copy story-copy">
+        <span class="eyebrow caps" data-intro="rise">Our story</span>
+        <h1 data-intro="rise">Howdy, <em>neighbor!</em></h1>
+        <p class="lede-p" data-intro="rise">Chump Change Crochet started at a folding table in a church basement — one hook, a bag of cotton yarn, and a firm belief that bare walls deserve better.</p>
+        <p data-intro="rise">Every piece is still designed, hooked, blocked, and framed by hand in small batches. No restocks, no repeats, no two alike — the hand makes sure of that.</p>
+        <p data-intro="rise">Thanks for stopping by the table. Stay for the lemonade.</p>
+        <p class="sig" data-intro="rise">— hooked with love, the Chump Change crew</p>
+        <ul class="values" data-intro="rise">
+          <li>100% cotton, 100% handmade <span>Materials</span></li>
+          <li>One of one — never repeated <span>Edition</span></li>
+          <li>Framed &amp; ready to hang <span>Delivery</span></li>
+        </ul>
+      </div>
+      <div class="hero-art square" data-intro="art">
+        <div class="mat gingham-soft" aria-hidden="true"></div>
+        <div class="frame" data-art>
+          <div class="ph" id="storyPh"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{{FOOTER}}
+</div>
+
+{{SPRITE}}
+
+<script>
+{{COMMON_JS}}
+
+/* ================= our story page ================= */
+{{PAGE_JS}}
+</script>
+</body>
+</html>

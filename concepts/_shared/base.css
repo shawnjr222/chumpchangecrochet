@@ -1,0 +1,20 @@
+/* Shared by every concept: reset, photo placeholders, reveal gating, focus, reduced motion. */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;scrollbar-gutter:stable;-webkit-text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--accent,#C0392B);outline-offset:3px;border-radius:3px}
+::selection{background:var(--accent,#C0392B);color:#fff}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ph{position:relative;overflow:hidden;background:#EADFC8 center/cover no-repeat}
+.ph img{width:100%;height:100%;object-fit:cover;transition:opacity .32s cubic-bezier(.2,0,0,1),transform .9s cubic-bezier(.05,.7,.1,1)}
+.js .ph img:not(.loaded){opacity:0}
+.js [data-reveal]:not(.is-in){opacity:0}
+.js:not(.ready) [data-intro]{opacity:0;animation:failsafe 0s linear 2.6s forwards}
+@keyframes failsafe{to{opacity:1}}
+.skip{position:fixed;left:16px;top:-80px;z-index:200;background:#222;color:#fff;padding:10px 16px;border-radius:999px;font:600 14px system-ui;text-decoration:none}
+.skip:focus{top:14px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;transition-delay:0s!important}}
+

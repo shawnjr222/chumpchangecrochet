@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>After Hours · Chump Change Crochet</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_shared/base.css">
+<style>
+  :root{--bg:#17100B;--bg2:#1F1610;--text:#F1E7D6;--soft:#B3A38B;--gold:#C8A97E;--line:rgba(200,169,126,.28);--accent:#D9604F;
+    --serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+  body{background:var(--bg);color:var(--text);font:400 15.5px/1.65 var(--sans)}
+  .top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px clamp(20px,4vw,56px);position:sticky;top:0;z-index:30;background:linear-gradient(var(--bg),rgba(23,16,11,.0))}
+  .mark{font:400 26px var(--serif);text-decoration:none;justify-self:center;grid-column:2}
+  .top .l{grid-column:1;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+  .top .r{grid-column:3;justify-self:end;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+  .top a{text-decoration:none}.top .l a,.top .r a{border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .5s}
+  .top .l a:hover,.top .r a:hover{border-color:var(--gold)}
+  .hero{position:relative;text-align:center;padding:clamp(24px,5vw,72px) clamp(20px,4vw,56px) clamp(64px,9vw,128px);overflow:hidden}
+  .hero::before{content:"";position:absolute;left:50%;top:46%;width:min(1100px,120vw);aspect-ratio:1/1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(200,169,126,.28),rgba(200,169,126,.08) 55%,transparent 72%);pointer-events:none}
+  .eyebrow{position:relative;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  h1{position:relative;font:400 clamp(44px,7.6vw,118px)/.98 var(--serif);letter-spacing:-.02em;margin:18px auto 0;max-width:14ch}
+  h1 em{color:var(--gold)}
+  .lit{position:relative;display:block;width:min(100%,420px);margin:clamp(36px,5vw,64px) auto 0;text-decoration:none}
+  .lit .ph{aspect-ratio:4/5;box-shadow:0 0 0 1px var(--line),0 50px 90px -30px rgba(0,0,0,.8),0 0 120px -20px rgba(200,169,126,.35)}
+  .lit:hover img{transform:scale(1.03)}
+  .lit .cap{margin-top:16px;font:400 22px var(--serif)}
+  .lit .cap span{display:block;font:400 13px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-top:2px}
+  .lede{position:relative;max-width:46ch;margin:clamp(32px,5vw,56px) auto 28px;color:var(--soft);font-size:17px}
+  .cta{position:relative;display:inline-flex;gap:10px;padding:15px 32px;border:1px solid var(--gold);border-radius:999px;color:var(--text);text-decoration:none;font-weight:500;letter-spacing:.04em;transition:background .5s,color .5s}
+  .cta:hover{background:var(--gold);color:var(--bg)}
+  .shop{padding:clamp(48px,7vw,104px) clamp(20px,4vw,56px) clamp(64px,9vw,128px);max-width:1320px;margin:0 auto}
+  .shop h2{font:400 clamp(36px,4.6vw,64px)/1 var(--serif);text-align:center;margin-bottom:clamp(36px,5vw,64px)}
+  .shop h2 em{color:var(--gold)}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,44px) clamp(16px,2vw,28px)}
+  .card{display:block;text-decoration:none}
+  .card .ph{aspect-ratio:1/1;box-shadow:0 0 0 1px var(--line)}
+  .card img{filter:saturate(.7) brightness(.78);transition:filter .6s cubic-bezier(.2,0,0,1),opacity .32s,transform .9s cubic-bezier(.05,.7,.1,1)}
+  .card:hover img,.card:focus-visible img{filter:none;transform:scale(1.03)}
+  .card .m{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:14px}
+  .card h3{font:400 21px/1.15 var(--serif)}
+  .card .price{color:var(--gold);font-weight:500}
+  .card .s{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-top:2px}
+  .story{border-top:1px solid var(--line);padding:clamp(64px,9vw,128px) clamp(20px,4vw,56px);text-align:center;background:var(--bg2)}
+  .story p{font:400 clamp(24px,3.4vw,44px)/1.22 var(--serif);max-width:24ch;margin:0 auto;letter-spacing:-.01em}
+  .story .sig{font:italic 400 20px var(--serif);color:var(--gold);margin:28px auto 22px}
+  .story a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:3px;text-decoration:none}
+  footer{border-top:1px solid var(--line);padding:30px clamp(20px,4vw,56px);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--soft)}
+  footer h5{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+  footer a{display:block;text-decoration:none}footer a:hover{color:var(--text)}
+  @media(max-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.top .l{display:none}.top{grid-template-columns:1fr auto}.mark{grid-column:1;justify-self:start}.top .r{grid-column:2}
+    .card h3{font-size:17px}.card .m{flex-direction:column;gap:0}}
+</style>
+</head>
+<body>
+<a class="skip" href="#shop">Skip to past work</a>
+<header class="top"><div class="l"><a href="../../story.html">About</a></div><a class="mark" href="#top">Chump Change</a>
+  <div class="r"><a href="https://www.depop.com/chumpchangecrochet/" target="_blank" rel="noopener noreferrer">Shop on Depop ↗</a></div></header>
+<main id="top">
+  <section class="hero">
+    <span class="eyebrow" data-intro>Handmade in San Francisco</span>
+    <h1 data-intro>Hooked with love, <em>hung with pride.</em></h1>
+    <a class="lit" id="lit" data-intro href="#" target="_blank" rel="noopener noreferrer"><div class="ph" id="litPh"></div><p class="cap"></p></a>
+    <p class="lede" data-intro>One-of-one crocheted wall art, made slow and sweet. Every piece is designed, hooked, and framed by hand — when it's gone, it's gone for good.</p>
+    <a class="cta" href="#shop" data-intro>View past work ↓</a>
+  </section>
+  <section class="shop" id="shop"><h2 data-reveal>Past work</h2><div class="grid" id="grid"></div></section>
+  <section class="story"><div data-reveal>
+    <p>Chump Change Crochet started at a folding table in a church basement — one hook, a bag of cotton yarn, and a firm belief that bare walls deserve better.</p>
+    <p class="sig">— hooked with love, the Chump Change crew</p><a href="../../story.html">Our story</a></div></section>
+</main>
+<footer><div>© 2026 Chump Change Crochet.<br>Made with Love ❤️</div><div id="hello"></div></footer>
+<script src="../_shared/data.js"></script><script src="../_shared/shop.js"></script>
+<script>
+const { $, $$, PRODUCTS: P } = CCC;
+$('#hello').innerHTML = CCC.helloHTML;
+const lit = $('#lit'); lit.href = CCC.depopUrl(P[0].id); lit.setAttribute('aria-label', P[0].name + ' on Depop (opens in a new tab)');
+$('.cap', lit).innerHTML = `${P[0].name}<span>${CCC.money(P[0].price)} · ${P[0].size}</span>`;
+CCC.photo($('#litPh'), 1, { hero: true, eager: true, sizes: '(max-width:700px) 80vw, 420px', alt: 'Starburst No. 1, a large radial crocheted wall piece' });
+$('#grid').innerHTML = P.map(p => `<a class="card" data-reveal href="${CCC.depopUrl(p.id)}" target="_blank" rel="noopener noreferrer" aria-label="${p.name}${CCC.ariaPrice(p)} on Depop (opens in a new tab)">
+  <div class="ph" data-n="${p.n}"></div><div class="m"><h3>${p.name}</h3><span class="price">${CCC.money(p.price)}</span></div><p class="s">One of one · ${p.size}</p></a>`).join('');
+$$('.card .ph').forEach(ph => { const p = P.find(x => x.n === +ph.dataset.n); CCC.photo(ph, p.n, { sizes: '(max-width:700px) 46vw, (max-width:980px) 31vw, 300px', alt: p.name + ', crocheted wall art' }); });
+/* slower, quieter: everything fades up a touch longer than on the other concepts */
+CCC.start(() => $$('[data-intro]').forEach((el, i) => CCC.rise(el, { delay: 120 + i * 130, dur: 900, fx: 700, y: 10 })));
+</script>
+</body>
+</html>

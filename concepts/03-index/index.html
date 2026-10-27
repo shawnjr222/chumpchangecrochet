@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Index · Chump Change Crochet</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_shared/base.css">
+<style>
+  :root{--paper:#F3F0E7;--ink:#161412;--soft:#6B655B;--line:#161412;--accent:#C0392B;
+    --grot:'Space Grotesk',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace}
+  body{background:var(--paper);color:var(--ink);font:400 15px/1.6 var(--grot)}
+  .mono{font:400 12px/1.4 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+  .bar{display:flex;justify-content:space-between;align-items:center;padding:14px clamp(16px,3vw,40px);border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--paper);z-index:20}
+  .bar a{text-decoration:none}
+  .bar .mark{font:700 17px var(--grot);letter-spacing:-.02em}
+  .bar nav{display:flex;gap:24px}
+  .bar nav a:hover{color:var(--accent)}
+  .hero{padding:clamp(40px,7vw,96px) clamp(16px,3vw,40px) clamp(32px,5vw,64px)}
+  h1{font:700 clamp(44px,9.4vw,152px)/.92 var(--grot);letter-spacing:-.05em;max-width:14ch}
+  h1 em{font-style:normal;color:var(--accent)}
+  .hero-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:clamp(28px,4vw,56px);align-items:end}
+  .lede{max-width:40ch;font-size:18px;color:var(--soft)}
+  .jump{justify-self:end;display:inline-flex;gap:10px;align-items:center;border:1px solid var(--ink);padding:14px 22px;border-radius:999px;text-decoration:none;font-weight:700;transition:background .32s,color .32s}
+  .jump:hover{background:var(--ink);color:var(--paper)}
+  .index{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);gap:clamp(24px,4vw,64px);padding:0 clamp(16px,3vw,40px) clamp(64px,8vw,112px);align-items:start}
+  .head,.row{display:grid;grid-template-columns:3.5ch minmax(0,1fr) 9ch 8ch 2ch;gap:16px;align-items:baseline;padding:0}
+  .head{padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--soft)}
+  .row{padding:20px 0;border-bottom:1px solid var(--line);text-decoration:none;position:relative;transition:padding .32s cubic-bezier(.05,.7,.1,1),background .2s,color .2s}
+  .row .name{font:700 clamp(22px,2.6vw,36px)/1.1 var(--grot);letter-spacing:-.03em}
+  .row .arrow{transition:transform .32s cubic-bezier(.05,.7,.1,1)}
+  .row:hover,.row:focus-visible{background:var(--ink);color:var(--paper);padding-left:12px;padding-right:12px;outline-offset:-2px}
+  .row:hover .arrow,.row:focus-visible .arrow{transform:translate(3px,-3px)}
+  .row .thumb{display:none}
+  .preview{position:sticky;top:76px}
+  .preview .ph{aspect-ratio:1/1;border:1px solid var(--line)}
+  .preview .ph+.ph{position:absolute;inset:0;opacity:0;transition:opacity .32s cubic-bezier(.2,0,0,1)}
+  .preview .stack{position:relative}
+  .preview .ph.on{opacity:1!important}
+  .preview p{margin-top:12px;display:flex;justify-content:space-between}
+  .story{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);padding:clamp(48px,7vw,96px) clamp(16px,3vw,40px);border-top:1px solid var(--line)}
+  .story h2{font:700 clamp(28px,3.6vw,52px)/1 var(--grot);letter-spacing:-.04em}
+  .story p{max-width:48ch;margin-bottom:16px;font-size:17px}
+  .story .sig{color:var(--accent);font-weight:700}
+  .story a{display:inline-block;margin-top:8px;font-weight:700;border-bottom:2px solid var(--accent);text-decoration:none}
+  footer{border-top:1px solid var(--line);padding:22px clamp(16px,3vw,40px);display:grid;grid-template-columns:1fr auto auto;gap:32px;font:400 12px/1.7 var(--mono)}
+  footer h5{font-weight:500;color:var(--soft);text-transform:uppercase;letter-spacing:.06em}
+  footer a{display:block;text-decoration:none}footer a:hover{color:var(--accent)}
+  @media(max-width:900px){
+    .index{grid-template-columns:1fr}.preview{display:none}
+    .head,.row{grid-template-columns:56px minmax(0,1fr) auto 2ch}.head .sz,.row .sz{display:none}
+    .row .thumb{display:block;width:56px;height:56px}.row .no{display:none}.head .no{display:none}
+    .head{grid-template-columns:minmax(0,1fr) auto 2ch}.head span:nth-child(2){grid-column:1}
+    .hero-row,.story{grid-template-columns:1fr}.jump{justify-self:start}
+    footer{grid-template-columns:1fr;gap:12px}.bar nav a:first-child{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#index">Skip to past work</a>
+<header class="bar mono"><a class="mark" href="#top" style="text-transform:none">Chump Change</a>
+  <nav><a href="../../story.html">About</a><a href="https://www.depop.com/chumpchangecrochet/" target="_blank" rel="noopener noreferrer">Shop on Depop ↗</a></nav></header>
+<main id="top">
+  <section class="hero">
+    <h1 data-intro>Hooked with love, <em>hung with pride.</em></h1>
+    <div class="hero-row">
+      <p class="lede" data-intro>One-of-one crocheted wall art, made slow and sweet. Every piece is designed, hooked, and framed by hand — when it's gone, it's gone for good.</p>
+      <a class="jump" href="#index" data-intro>View past work <span>↓</span></a>
+    </div>
+  </section>
+  <section class="index" id="index" aria-label="Past work">
+    <div>
+      <div class="head mono"><span class="no">No.</span><span>Piece</span><span class="sz">Size</span><span>Price</span><span></span></div>
+      <div id="rows"></div>
+    </div>
+    <aside class="preview" aria-hidden="true"><div class="stack" id="stack"></div><p class="mono"><span id="pvName"></span><span id="pvPrice"></span></p></aside>
+  </section>
+  <section class="story" data-reveal>
+    <h2>Howdy, neighbor!</h2>
+    <div><p>Chump Change Crochet started at a folding table in a church basement — one hook, a bag of cotton yarn, and a firm belief that bare walls deserve better.</p>
+      <p class="sig">— hooked with love, the Chump Change crew</p><a href="../../story.html">Our story</a></div>
+  </section>
+</main>
+<footer><div>© 2026 Chump Change Crochet.<br>Made with Love ❤️</div><div id="hello"></div><div></div></footer>
+<script src="../_shared/data.js"></script><script src="../_shared/shop.js"></script>
+<script>
+const { $, $$, PRODUCTS: P } = CCC;
+$('#hello').innerHTML = CCC.helloHTML;
+$('#rows').innerHTML = P.map(p => `<a class="row" data-reveal href="${CCC.depopUrl(p.id)}" target="_blank" rel="noopener noreferrer" data-n="${p.n}" aria-label="${p.name}${CCC.ariaPrice(p)} on Depop (opens in a new tab)">
+  <span class="no mono">${CCC.pad(p.n)}</span><span class="name">${p.name}</span><span class="sz mono">${p.size}</span><span class="mono">${CCC.money(p.price)}</span><span class="arrow">↗</span>
+  <span class="thumb ph" data-t="${p.n}" style="grid-column:1;grid-row:1"></span></a>`).join('');
+/* mobile rows show a thumbnail; the desktop preview stacks every photo and crossfades between them */
+$$('.thumb').forEach(t => CCC.photo(t, +t.dataset.t, { sizes: '56px', alt: '' }));
+$('#stack').innerHTML = P.map(p => `<div class="ph ${p.n === 1 ? 'on' : ''}" data-s="${p.n}"></div>`).join('');
+$$('#stack .ph').forEach((ph, i) => { if (i) { ph.style.position = 'absolute'; ph.style.inset = '0'; ph.style.opacity = '0'; } CCC.photo(ph, +ph.dataset.s, { sizes: '(max-width:900px) 1px, 520px', alt: '', eager: i === 0 }); });
+const show = n => { const p = P.find(x => x.n === n); $$('#stack .ph').forEach(ph => { const on = +ph.dataset.s === n; ph.classList.toggle('on', on); ph.style.opacity = on ? '1' : '0'; });
+  $('#pvName').textContent = p.name; $('#pvPrice').textContent = CCC.money(p.price); };
+show(1);
+$$('.row').forEach(r => { const f = () => show(+r.dataset.n); r.addEventListener('mouseenter', f); r.addEventListener('focus', f); });
+CCC.start(() => $$('[data-intro]').forEach((el, i) => CCC.rise(el, { delay: 80 + i * 90 })));
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ten directions · Chump Change Crochet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--cream:#FBF3E4;--ink:#3A2A1A;--soft:#6E5A3E;--line:#E7D6B6;--red:#C0392B}
+  body{background:var(--cream);color:var(--ink);font:400 15px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+  header{max-width:1280px;margin:0 auto;padding:clamp(32px,5vw,72px) clamp(20px,4vw,48px) 12px}
+  h1{font:400 clamp(36px,5vw,68px)/1 'Fraunces',Georgia,serif;letter-spacing:-.03em}
+  h1 em{font-style:normal;color:var(--red)}
+  header p{max-width:62ch;color:var(--soft);margin-top:14px;font-size:16.5px}
+  .grid{max-width:1280px;margin:0 auto;padding:28px clamp(20px,4vw,48px) 72px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:36px 28px}
+  a.card{display:block;text-decoration:none;color:inherit}
+  .shot{position:relative;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:#fff;box-shadow:0 18px 40px -26px rgba(58,42,26,.45);transition:transform .32s cubic-bezier(.05,.7,.1,1),box-shadow .32s}
+  .shot iframe{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform:scale(var(--s,.25));transform-origin:0 0;pointer-events:none}
+  .card:hover .shot{transform:translateY(-4px);box-shadow:0 24px 48px -26px rgba(58,42,26,.55)}
+  .meta{display:flex;gap:12px;align-items:baseline;margin-top:14px}
+  .no{font:500 12px ui-monospace,monospace;color:var(--red);letter-spacing:.08em}
+  h2{font:500 22px/1.15 'Fraunces',Georgia,serif;letter-spacing:-.01em}
+  .tag{margin-left:auto;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line);padding:2px 10px;border-radius:999px;white-space:nowrap}
+  .card p{color:var(--soft);font-size:14px;margin-top:4px;max-width:46ch}
+  footer{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px) 56px;color:var(--soft);font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ten <em>directions</em></h1>
+  <p>Same pieces, same words, same Depop links. Ten different answers to "what could this site be?" Open any one in its own tab. Number 01 is the current site.</p>
+</header>
+<main class="grid" id="grid"></main>
+<footer>Every card links straight to the live concept. Previews are live pages, scaled down. See REFERENCES.md in the project folder for the sources behind these directions.</footer>
+<script>
+const C = [
+  ['01', 'Gingham Editorial', '../index.html', 'The current site', 'Serif headlines, a soft gingham mat behind the photo, one thin red rule. Calm and warm.'],
+  ['02', 'Salon Wall', '02-salon-wall/', 'Gallery', 'Pieces hang on a quiet wall at their real relative sizes, with small plaque labels.'],
+  ['03', 'Index', '03-index/', 'Typographic', 'A big bold headline and the pieces as a ruled list, with a photo that follows your hover.'],
+  ['04', 'Studio Journal', '04-studio-journal/', 'Notebook', 'Warm paper, pencil dimension marks around each piece, a few handwritten notes.'],
+  ['05', 'Color Study', '05-color-study/', 'Bold', 'One full screen per piece, colored from its photo, with a running counter.'],
+  ['06', 'Plaid Pop', '06-plaid-pop/', 'Graphic', 'Saturated gingham, thick outlines, flat offset shadows. Confident and playful.'],
+  ['07', 'After Hours', '07-after-hours/', 'Dark', 'A gallery at night: one lit piece, dim thumbnails that glow on hover, slow fades.'],
+  ['08', 'Lookbook Rail', '08-lookbook-rail/', 'Horizontal', 'A calm rail of large frames you glide through, with a progress line and arrows.'],
+  ['09', 'Split Story', '09-split-story/', 'Product-led', 'A pinned panel on the left follows you as large photos scroll past on the right.'],
+  ['10', 'Specimen Cabinet', '10-specimen-cabinet/', 'Museum', 'Catalogue cards with number, size, material and edition. Dry, precise, charming.']
+];
+document.getElementById('grid').innerHTML = C.map(([n, name, href, tag, desc], i) => `<a class="card" href="${href}">
+  <div class="shot"><iframe src="${href}" loading="${i < 4 ? 'eager' : 'lazy'}" title="${name} preview" tabindex="-1"></iframe></div>
+  <div class="meta"><span class="no">${n}</span><h2>${name}</h2><span class="tag">${tag}</span></div><p>${desc}</p></a>`).join('');
+/* scale each 1440px-wide live preview to fit its card */
+const fit = () => document.querySelectorAll('.shot').forEach(s => s.style.setProperty('--s', (s.clientWidth / 1440).toFixed(4)));
+addEventListener('resize', fit); fit();
+</script>
+</body>
+</html>

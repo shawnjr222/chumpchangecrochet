@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<meta name="theme-color" content="#FBF3E4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23C0392B'/%3E%3Cpath d='M0 8h32M0 24h32M8 0v32M24 0v32' stroke='%23FBF3E4' stroke-opacity='.5' stroke-width='5'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');if('scrollRestoration' in history)history.scrollRestoration='manual'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{{PRELOAD}}<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+{{CSS}}
+</style>
+</head>
+<body>
+<a class="skip" href="{{SKIP_HREF}}">{{SKIP_TEXT}}</a>
+
+<div id="page">
+{{HEADER}}
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow caps" data-intro="rise">Handmade in San Francisco</span>
+        <h1 data-intro="rise"><span class="ln">Hooked with love,</span> <span class="ln"><em>hung with pride.</em></span></h1>
+        <p class="lede" data-intro="rise">One-of-one crocheted wall art, made slow and sweet. Every piece is designed, hooked, and framed by hand — when it's gone, it's gone for good.</p>
+        <div class="hero-cta" data-intro="rise">
+          <a class="btn btn-solid" href="#shop">View past work<svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <button type="button" class="btn btn-line" id="customOpen" aria-haspopup="dialog">Contact for custom piece</button>
+        </div>
+      </div>
+      <div class="hero-art" data-intro="art">
+        <div class="mat gingham-soft" aria-hidden="true"></div>
+        <button class="frame" data-open="starburst-no-1" aria-label="View Starburst No. 1, $53.20">
+          <div class="ph" id="heroPh"></div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="promise">
+    <div class="wrap">
+      <div class="pitem" data-reveal><h4>Hooked entirely by hand</h4><p>No machines, no shortcuts — just a hook, some yarn, and patience.</p></div>
+      <div class="pitem" data-reveal data-delay="70"><h4>One of one, always</h4><p>When a piece finds its wall, that design retires for good.</p></div>
+      <div class="pitem" data-reveal data-delay="140"><h4>Ships with a thank-you note</h4><p>Handwritten, obviously. Flat-packed and framed, ready to hang.</p></div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section class="shop" id="shop">
+    <div class="wrap">
+      <div class="shop-head">
+        <h2 data-reveal>Past work</h2>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+</main>
+
+{{FOOTER}}
+</div>
+
+<!-- QUICK VIEW -->
+<div class="qv" id="qv" role="dialog" aria-modal="true" aria-labelledby="qvName" aria-hidden="true">
+  <div class="qv-card" id="qvCard">
+    <button class="qv-close" id="qvClose" aria-label="Close quick view"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <div class="qv-photo"><div class="ph" id="qvPh"><img id="qvImg" alt="" width="800" height="800" decoding="async"></div></div>
+    <div class="qv-info" id="qvBody">
+      <span class="caps">One of one · Listed on Depop</span>
+      <h3 id="qvName"></h3>
+      <div class="qv-price" id="qvPrice"></div>
+      <p class="qv-desc" id="qvDesc"></p>
+      <ul class="qv-details" id="qvDetails"></ul>
+      <div class="qv-row">
+        <a class="btn btn-solid" id="qvBuy" href="#" target="_blank" rel="noopener noreferrer" style="flex:1">Buy on Depop <svg class="ic" aria-hidden="true"><use href="#i-out"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOM PIECES: information only, no calls to action; the single control is Close -->
+<div class="cm" id="cm" role="dialog" aria-modal="true" aria-labelledby="cmTitle" aria-hidden="true">
+  <div class="cm-card" id="cmCard">
+    <button class="qv-close" id="cmClose" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <div class="cm-scroll" id="cmScroll">
+    <span class="caps">Custom pieces</span>
+    <h3 id="cmTitle">A one of one, made for you</h3>
+    <p class="cm-lede">Hooked, blocked and framed by hand. Four short steps to ask for yours.</p>
+    <ol class="cm-steps" id="cmSteps">
+      <li class="open">
+        <h4><button type="button" class="cm-head" id="cmH1" aria-expanded="true" aria-controls="cmP1"><span class="n" aria-hidden="true">1</span><span class="t">Message us on Instagram</span><span class="cm-chev" aria-hidden="true"></span></button></h4>
+        <div class="cm-panel" id="cmP1" role="region" aria-labelledby="cmH1"><div class="cm-body"><p>Send a message to <b>@chumpchangecrochet</b> and start with “Custom piece” so it doesn’t get lost.</p></div></div>
+      </li>
+      <li>
+        <h4><button type="button" class="cm-head" id="cmH2" aria-expanded="false" aria-controls="cmP2"><span class="n" aria-hidden="true">2</span><span class="t">Tell us what you have in mind</span><span class="cm-chev" aria-hidden="true"></span></button></h4>
+        <div class="cm-panel" id="cmP2" role="region" aria-labelledby="cmH2"><div class="cm-body"><dl class="cm-list">
+            <div><dt>The idea</dt><dd>A photo or sketch helps most</dd></div>
+            <div><dt>Size</dt><dd>In inches, or the spot it is for</dd></div>
+            <div><dt>Colors</dt><dd>Ones you want, and any to avoid</dd></div>
+            <div><dt>Frame</dt><dd>Wood, white, black or blue</dd></div>
+            <div><dt>Date</dt><dd>When you need it</dd></div>
+            <div><dt>Shipping to</dt><dd>City and state, or country</dd></div>
+            <div><dt>Budget</dt><dd>A rough range</dd></div>
+          </dl></div></div>
+      </li>
+      <li>
+        <h4><button type="button" class="cm-head" id="cmH3" aria-expanded="false" aria-controls="cmP3"><span class="n" aria-hidden="true">3</span><span class="t">We reply</span><span class="cm-badge">about 2 business days</span><span class="cm-chev" aria-hidden="true"></span></button></h4>
+        <div class="cm-panel" id="cmP3" role="region" aria-labelledby="cmH3"><div class="cm-body"><p>You’ll hear from us with any questions, a price and a date it will be ready. Nothing after 3 days? Check your message requests, since Instagram sometimes hides first messages.</p></div></div>
+      </li>
+      <li>
+        <h4><button type="button" class="cm-head" id="cmH4" aria-expanded="false" aria-controls="cmP4"><span class="n" aria-hidden="true">4</span><span class="t">We make it</span><span class="cm-chev" aria-hidden="true"></span></button></h4>
+        <div class="cm-panel" id="cmP4" role="region" aria-labelledby="cmH4"><div class="cm-body"><p>Once you say yes, we hook, block and frame it by hand. It arrives ready to hang.</p></div></div>
+      </li>
+    </ol>
+    </div>
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+
+{{SPRITE}}
+
+<script>
+{{COMMON_JS}}
+
+/* ================= home page ================= */
+{{PAGE_JS}}
+</script>
+</body>
+</html>

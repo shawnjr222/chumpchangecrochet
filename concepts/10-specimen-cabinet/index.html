@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Specimen Cabinet · Chump Change Crochet</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_shared/base.css">
+<style>
+  :root{--paper:#F8F6F0;--ink:#131110;--soft:#6A645A;--rule:#131110;--hair:#D6D0C2;--accent:#B83A2C;--gut:clamp(16px,3vw,40px);
+    --serif:'IBM Plex Serif',Georgia,serif;--mono:'IBM Plex Mono',ui-monospace,monospace}
+  body{background:var(--paper);color:var(--ink);font:400 15.5px/1.65 var(--serif)}
+  .mono{font:400 11.5px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+  .meta-row{display:flex;justify-content:space-between;gap:16px;padding:10px var(--gut);border-bottom:1px solid var(--rule);background:var(--ink);color:var(--paper)}
+  .top{display:flex;justify-content:space-between;align-items:center;padding:18px var(--gut);border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:20}
+  .mark{font:500 20px var(--serif);text-decoration:none;letter-spacing:-.01em}
+  .top nav{display:flex;gap:24px}.top nav a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .32s}.top nav a:hover{border-color:var(--ink)}
+  .hero{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule)}
+  .hero-l{padding:clamp(36px,6vw,88px) var(--gut);border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:space-between;gap:48px}
+  h1{font:300 clamp(40px,5.6vw,88px)/1.02 var(--serif);letter-spacing:-.035em}
+  h1 em{font-style:italic;color:var(--accent)}
+  .lede{max-width:40ch;color:var(--soft);font-size:16.5px;margin-top:22px}
+  .btn{display:inline-flex;gap:10px;padding:14px 24px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);text-decoration:none;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;transition:background .32s,color .32s;align-self:flex-start}
+  .btn:hover{background:var(--paper);color:var(--ink)}
+  .hero-r{display:block;text-decoration:none;position:relative;background:#EDE8DB;padding:clamp(24px,4vw,56px) var(--gut);display:flex;flex-direction:column;justify-content:center;gap:16px}
+  .hero-r .ph{aspect-ratio:4/5;max-height:640px;width:100%;max-width:520px;margin:0 auto;border:1px solid var(--ink)}
+  .hero-r:hover img{transform:scale(1.03)}
+  .hero-r .mono{display:flex;justify-content:space-between;max-width:520px;margin:0 auto;width:100%}
+  .shop h2{font:300 clamp(34px,4.2vw,60px)/1 var(--serif);letter-spacing:-.03em;padding:clamp(40px,6vw,80px) var(--gut) clamp(20px,3vw,32px)}
+  .shop h2 em{font-style:italic;color:var(--accent)}
+  .cab{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule)}
+  .spec{display:flex;flex-direction:column;text-decoration:none;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--paper);transition:background .32s}
+  .spec:nth-child(4n){border-right:0}
+  .spec:hover{background:#fff}
+  .spec .ph{aspect-ratio:1/1;margin:clamp(14px,1.6vw,22px) clamp(14px,1.6vw,22px) 0;border:1px solid var(--hair)}
+  .spec:hover img{transform:scale(1.03)}
+  .spec .label{padding:16px clamp(14px,1.6vw,22px) 18px;display:flex;flex-direction:column;gap:2px}
+  .spec .id{display:flex;justify-content:space-between;color:var(--soft)}
+  .spec h3{font:400 20px/1.15 var(--serif);letter-spacing:-.015em;margin:6px 0 8px}
+  .spec dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;font:400 11.5px/1.5 var(--mono);color:var(--soft);border-top:1px solid var(--hair);padding-top:8px}
+  .spec dd{color:var(--ink);text-align:right}
+  .spec .go{margin-top:12px;font:500 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .story{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule)}
+  .story>div{padding:clamp(40px,6vw,88px) var(--gut)}
+  .story>div:first-child{border-right:1px solid var(--rule)}
+  .story h2{font:300 clamp(32px,4vw,56px)/1.02 var(--serif);letter-spacing:-.03em}
+  .story h2 em{font-style:italic;color:var(--accent)}
+  .story p{max-width:48ch;margin-bottom:14px;font-size:17px}
+  .story .sig{font-style:italic;color:var(--accent)}
+  .story a{color:var(--ink);border-bottom:1px solid var(--ink);text-decoration:none;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+  .values{list-style:none;margin-top:6px;border-top:1px solid var(--rule)}
+  .values li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--hair)}
+  .values li span{color:var(--soft)}
+  footer{padding:24px var(--gut);display:grid;grid-template-columns:1fr auto;gap:24px;font:400 12px/1.7 var(--mono)}
+  footer h5{font-weight:500;color:var(--soft);text-transform:uppercase;letter-spacing:.06em}
+  footer a{display:block;text-decoration:none}footer a:hover{color:var(--accent)}
+  @media(max-width:1000px){.cab{grid-template-columns:repeat(2,1fr)}.spec:nth-child(4n){border-right:1px solid var(--rule)}.spec:nth-child(2n){border-right:0}}
+  @media(max-width:760px){.hero,.story{grid-template-columns:1fr}.hero-l,.story>div:first-child{border-right:0;border-bottom:1px solid var(--rule)}.top nav a:first-child{display:none}.meta-row span:last-child{display:none}
+    .spec h3{font-size:17px}.spec dl{font-size:10.5px}footer{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="skip" href="#shop">Skip to past work</a>
+<div class="meta-row mono"><span>One of one, always</span><span>Ships in 3–5 days</span></div>
+<header class="top"><a class="mark" href="#top">Chump Change</a>
+  <nav class="mono"><a href="../../story.html">About</a><a href="https://www.depop.com/chumpchangecrochet/" target="_blank" rel="noopener noreferrer">Shop on Depop ↗</a></nav></header>
+<main id="top">
+  <section class="hero">
+    <div class="hero-l">
+      <div data-intro><h1>Hooked with love, <em>hung with pride.</em></h1>
+        <p class="lede">One-of-one crocheted wall art, made slow and sweet. Every piece is designed, hooked, and framed by hand — when it's gone, it's gone for good.</p></div>
+      <a class="btn" href="#shop" data-intro>View past work ↓</a>
+    </div>
+    <a class="hero-r" id="heroR" data-intro href="#" target="_blank" rel="noopener noreferrer"><div class="ph" id="heroPh"></div><p class="mono" id="heroCap"></p></a>
+  </section>
+  <section class="shop" id="shop"><h2 data-reveal>Past work</h2><div class="cab" id="cab"></div></section>
+  <section class="story"><div data-reveal><h2>Howdy, <em>neighbor!</em></h2>
+      <p style="margin-top:22px">Chump Change Crochet started at a folding table in a church basement — one hook, a bag of cotton yarn, and a firm belief that bare walls deserve better.</p>
+      <p class="sig">— hooked with love, the Chump Change crew</p><a href="../../story.html">Our story</a></div>
+    <div data-reveal data-delay="70"><ul class="values"><li>100% cotton, 100% handmade <span class="mono">Materials</span></li><li>One of one — never repeated <span class="mono">Edition</span></li><li>Framed &amp; ready to hang <span class="mono">Delivery</span></li></ul></div></section>
+</main>
+<footer><div>© 2026 Chump Change Crochet. Made with Love ❤️</div><div id="hello"></div></footer>
+<script src="../_shared/data.js"></script><script src="../_shared/shop.js"></script>
+<script>
+const { $, $$, PRODUCTS: P } = CCC;
+$('#hello').innerHTML = CCC.helloHTML;
+const hr = $('#heroR'); hr.href = CCC.depopUrl(P[0].id); hr.setAttribute('aria-label', P[0].name + ' on Depop (opens in a new tab)');
+$('#heroCap').innerHTML = `<span>No. 01 · ${P[0].name}</span><span>${CCC.money(P[0].price)}</span>`;
+CCC.photo($('#heroPh'), 1, { hero: true, eager: true, sizes: '(max-width:760px) 88vw, 520px', alt: 'Starburst No. 1, a large radial crocheted wall piece' });
+$('#cab').innerHTML = P.map(p => `<a class="spec" data-reveal href="${CCC.depopUrl(p.id)}" target="_blank" rel="noopener noreferrer" aria-label="${p.name}${CCC.ariaPrice(p)} on Depop (opens in a new tab)">
+  <div class="ph" data-n="${p.n}"></div>
+  <div class="label"><div class="id mono"><span>No. ${CCC.pad(p.n)}</span><span>${CCC.money(p.price)}</span></div><h3>${p.name}</h3>
+    <dl><dt>Size</dt><dd>${p.size}</dd><dt>Material</dt><dd>100% cotton</dd><dt>Edition</dt><dd>One of one</dd><dt>Finish</dt><dd>Framed</dd></dl>
+    <span class="go">View on Depop ↗</span></div></a>`).join('');
+$$('.spec .ph').forEach(ph => { const p = P.find(x => x.n === +ph.dataset.n); CCC.photo(ph, p.n, { sizes: '(max-width:1000px) 46vw, 280px', alt: p.name + ', crocheted wall art' }); });
+CCC.start(() => $$('[data-intro]').forEach((el, i) => CCC.rise(el, { delay: 80 + i * 100 })));
+</script>
+</body>
+</html>

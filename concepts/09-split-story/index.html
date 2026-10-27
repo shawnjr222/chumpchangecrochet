@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Split Story · Chump Change Crochet</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;400;500&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_shared/base.css">
+<style>
+  :root{--putty:#E9E2D3;--ink:#1F1913;--soft:#6D6455;--line:#CFC5B0;--accent:#B5382A;--gut:clamp(20px,3.6vw,52px);
+    --serif:'Spectral',Georgia,serif;--sans:'Manrope',system-ui,sans-serif}
+  body{background:var(--putty);color:var(--ink);font:400 15.5px/1.65 var(--sans)}
+  .split{display:grid;grid-template-columns:minmax(340px,5fr) 7fr;min-height:100vh}
+  .side{position:sticky;top:0;height:100vh;padding:var(--gut);display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--line)}
+  .side nav{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:13px}
+  .mark{font:500 24px var(--serif);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+  .side nav{gap:16px;flex-wrap:wrap}.side nav div{display:flex;gap:18px;white-space:nowrap}.side nav div a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .32s}.side nav div a:hover{border-color:var(--ink)}
+  h1{font:300 clamp(40px,4.4vw,72px)/1 var(--serif);letter-spacing:-.025em}
+  h1 em{color:var(--accent);font-style:italic}
+  .lede{color:var(--soft);margin:18px 0 0;max-width:36ch}
+  .now{border-top:1px solid var(--ink);padding-top:16px}
+  .now .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--soft);display:flex;justify-content:space-between}
+  .now .info{min-height:112px;margin-top:10px}
+  .now h2{font:400 clamp(26px,2.6vw,38px)/1.1 var(--serif);letter-spacing:-.015em}
+  .now .meta{display:flex;gap:16px;color:var(--soft);margin:6px 0 14px;font-size:14px}
+  .now .meta b{color:var(--ink)}
+  .go{display:inline-flex;gap:10px;align-items:center;padding:13px 24px;border-radius:999px;background:var(--ink);color:var(--putty);text-decoration:none;font-weight:700;font-size:14px;transition:background .32s}
+  .go:hover{background:var(--accent)}
+  .stream{padding:var(--gut);display:flex;flex-direction:column;gap:clamp(28px,4vw,56px);align-items:center}
+  .shot{display:block;width:min(100%,640px);text-decoration:none}
+  .shot .ph{aspect-ratio:1/1;box-shadow:0 1px 2px rgba(40,30,20,.1),0 30px 56px -30px rgba(40,30,20,.45)}
+  .shot:hover img{transform:scale(1.025)}
+  .shot .c{display:none}
+  .story{width:min(100%,640px);padding:clamp(24px,5vw,72px) 0 clamp(24px,5vw,56px)}
+  .story h2{font:300 clamp(34px,3.8vw,56px)/1.02 var(--serif);letter-spacing:-.02em;margin-bottom:20px}
+  .story h2 em{color:var(--accent)}
+  .story p{font-size:17px;max-width:50ch;margin-bottom:14px}
+  .story .sig{font:italic 400 22px var(--serif);color:var(--accent)}
+  .story a{font-weight:700;border-bottom:2px solid var(--accent);text-decoration:none}
+  footer{grid-column:1/-1;border-top:1px solid var(--line);padding:30px var(--gut);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--soft)}
+  footer h5{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+  footer a{display:block;text-decoration:none}footer a:hover{color:var(--ink)}
+  @media(max-width:900px){.split{grid-template-columns:1fr}.side{position:static;height:auto;gap:36px;border-right:0;border-bottom:1px solid var(--line);padding-bottom:36px}.now{display:none}
+    .shot .c{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:12px}.shot .c h3{font:400 22px var(--serif)}.shot .c span{font-weight:700}
+    .side nav div a:first-child{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#stream">Skip to past work</a>
+<div class="split" id="top">
+  <aside class="side">
+    <nav><a class="mark" href="#top">Chump Change</a><div><a href="../../story.html">About</a><a href="https://www.depop.com/chumpchangecrochet/" target="_blank" rel="noopener noreferrer">Shop on Depop ↗</a></div></nav>
+    <div data-intro><h1>Hooked with love, <em>hung with pride.</em></h1>
+      <p class="lede">One-of-one crocheted wall art, made slow and sweet. Every piece is designed, hooked, and framed by hand — when it's gone, it's gone for good.</p></div>
+    <div class="now" data-intro><div class="k"><span>Past work</span><span id="idx">01 / 08</span></div>
+      <div class="info" id="info" aria-live="polite"></div></div>
+  </aside>
+  <main class="stream" id="stream">
+    <div id="shots" style="display:contents"></div>
+    <section class="story" data-reveal>
+      <h2>Howdy, <em>neighbor!</em></h2>
+      <p>Chump Change Crochet started at a folding table in a church basement — one hook, a bag of cotton yarn, and a firm belief that bare walls deserve better.</p>
+      <p class="sig">— hooked with love, the Chump Change crew</p><a href="../../story.html">Our story</a>
+    </section>
+  </main>
+  <footer><div>© 2026 Chump Change Crochet.<br>Made with Love ❤️</div><div id="hello"></div></footer>
+</div>
+<script src="../_shared/data.js"></script><script src="../_shared/shop.js"></script>
+<script>
+const { $, $$, PRODUCTS: P } = CCC;
+$('#hello').innerHTML = CCC.helloHTML;
+$('#shots').innerHTML = P.map(p => `<a class="shot" data-reveal data-n="${p.n}" href="${CCC.depopUrl(p.id)}" target="_blank" rel="noopener noreferrer" aria-label="${p.name}${CCC.ariaPrice(p)} on Depop (opens in a new tab)">
+  <div class="ph" data-n="${p.n}"></div><div class="c"><h3>${p.name}</h3><span>${CCC.money(p.price)}</span></div></a>`).join('');
+$$('.shot .ph').forEach((ph, i) => { const p = P.find(x => x.n === +ph.dataset.n); CCC.photo(ph, p.n, { sizes: '(max-width:900px) 92vw, 640px', eager: i < 2, alt: p.name + ', crocheted wall art' }); });
+/* the pinned panel shows whichever piece is in the middle of the screen */
+const info = $('#info'), idx = $('#idx'); let cur = 0;
+const show = n => {
+  if (n === cur) return; cur = n; const p = P.find(x => x.n === n);
+  info.innerHTML = `<h2>${p.name}</h2><div class="meta"><span><b>${CCC.money(p.price)}</b></span><span>${p.size}</span><span>One of one</span></div><a class="go" href="${CCC.depopUrl(p.id)}" target="_blank" rel="noopener noreferrer">View on Depop ↗</a>`;
+  idx.textContent = CCC.pad(n) + ' / 08';
+  CCC.fade(info, { dur: 380 });
+};
+show(1);
+const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) show(+en.target.dataset.n); }), { rootMargin: '-45% 0px -45% 0px' });
+$$('.shot').forEach(s => io.observe(s));
+CCC.start(() => $$('[data-intro]').forEach((el, i) => CCC.rise(el, { delay: 80 + i * 110 })));
+</script>
+</body>
+</html>
