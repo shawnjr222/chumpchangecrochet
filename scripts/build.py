@@ -8,6 +8,7 @@ for k, v in g['springs'].items():
     spring.append(f"      --sp-{k}-e:{v['easing']}; --sp-{k}-d:{round(v['duration']*1000)}ms;")
 spring += ['    }', '  }']
 css = css.replace('/*__SPRING_VARS__*/', '\n'.join(spring))
+
 common = open('parts/common.js').read().replace('/*__GEN__*/', json.dumps(g, separators=(',', ':')))
 sprite, footer = open('parts/sprite.html').read(), open('parts/footer.html').read()
 header_t = open('parts/header.html').read()

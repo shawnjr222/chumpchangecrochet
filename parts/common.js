@@ -48,7 +48,6 @@ const markSeen = () => { try { sessionStorage.setItem('ccc-intro', '1'); } catch
 const quick = () => seenIntro || reduced();
 function chromeIntro() {
   $$('.nav [data-intro]').forEach(el => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: quick() ? 160 : 500, easing: EASE.fx, fill: 'backwards' }));
-  if (!quick()) $('#navRule').animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 1100, delay: 150, easing: EASE.emph, fill: 'backwards' });
 }
 function heroIntro() {
   const q = quick();
