@@ -115,3 +115,21 @@ document.addEventListener('click', e => {
   target.scrollIntoView({ behavior, block: 'start' });
   target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true });
 });
+
+
+/* ================= page transitions: a simple dissolve out, then the next page dissolves in ================= */
+(() => {
+  const page = $('#page'); if (!page) return;
+  if (seenIntro && !reduced()) page.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: 'ease-out' });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (a.target && a.target !== '_self') return;
+    const u = new URL(a.href, location.href);
+    if (u.origin !== location.origin || u.pathname === location.pathname) return;
+    if (reduced()) return;
+    e.preventDefault();
+    page.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, easing: 'ease-in', fill: 'forwards' }).onfinish = () => { location.href = u.href; };
+  });
+  addEventListener('pageshow', e => { if (e.persisted) page.getAnimations().forEach(x => x.cancel()); });
+})();

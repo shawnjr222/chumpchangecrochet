@@ -12,7 +12,7 @@
     --font-hand:'Yeseva One',Georgia,serif;
     --cream-rgb:243,244,234; --accent-rgb:63,107,74; --shadow-rgb:35,48,31; --scrim-rgb:31,43,30;
     --gs:#EAF0E2;
-    --f-bg:#1F2B1E; --f-text:#E6EBD8; --f-soft:#B8C4A4; --f-hover:#D7EBB0; --f-base:#93A27E; --f-word:#F3F4EA; --f-rule:rgba(168,181,138,.25);
+    --f-bg:#1F2B1E; --f-text:#E6EBD8; --f-soft:#B8C4A4; --f-hover:#A8D8A0; --f-base:#93A27E; --f-word:#F3F4EA; --f-rule:rgba(168,181,138,.25);
     /* type scale for this face */
     --hw:400; --hs:0.9; --ls:0.4; --mk:0.72; --mw:400; --mls:0;
 
@@ -65,6 +65,9 @@
   .link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;
     transition:transform var(--fx-slow) var(--ease-emph)}
   .link:hover::after,.link.active::after{transform:scaleX(1)}
+  /* links turn green on hover; the current page's link (and its underline) stays green */
+  .link,.wordmark,.shop-link,.mobile-menu a{transition:color var(--fx-slow) var(--ease-fx)}
+  .link:hover,.link.active,.wordmark:hover,.shop-link:hover,.mobile-menu a:hover,.mobile-menu a[aria-current="page"]{color:var(--red)}
   .wordmark{font-family:var(--font-hand);font-weight:var(--mw);font-size:calc(33px*var(--mk));letter-spacing:var(--mls);line-height:1;text-decoration:none;color:var(--ink);justify-self:center;white-space:nowrap}
   .nav-right{justify-self:end;display:flex;align-items:center;gap:14px}
   .shop-link{display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-decoration:none;padding:10px 0;position:relative}
@@ -106,6 +109,7 @@
   .btn-line{position:relative;background:#fff;border-color:rgba(var(--accent-rgb),.35);color:var(--red-dark)}
   .btn-line:hover{border-color:var(--red)}
   /* hearts drift up off the top edge once per hover; nothing loops */
+  .btn:has(.hearts){position:relative}
   .hearts{position:absolute;left:0;right:0;top:0;height:0;pointer-events:none}
   .hearts .ic{position:absolute;top:0;width:12px;height:12px;fill:currentColor;stroke:none;color:var(--red);opacity:0}
   .hearts .ic:nth-child(1){left:24%;--dx:-6px}
@@ -113,9 +117,9 @@
   .hearts .ic:nth-child(3){left:74%;--dx:8px}
   @keyframes heartUp{0%{opacity:0;transform:translate(0,6px) scale(.7)}30%{opacity:.85}100%{opacity:0;transform:translate(var(--dx),-30px) scale(1)}}
   @media (hover:hover){
-    .btn-line:hover .hearts .ic{animation:heartUp 1200ms cubic-bezier(.3,.1,.5,1) both}
-    .btn-line:hover .hearts .ic:nth-child(2){animation-delay:90ms}
-    .btn-line:hover .hearts .ic:nth-child(3){animation-delay:180ms}
+    .btn:hover .hearts .ic{animation:heartUp 1200ms cubic-bezier(.3,.1,.5,1) both}
+    .btn:hover .hearts .ic:nth-child(2){animation-delay:90ms}
+    .btn:hover .hearts .ic:nth-child(3){animation-delay:180ms}
   }
 
   /* ---------- hero ---------- */
@@ -284,7 +288,7 @@
        on the screen, not on whatever space is left over. */
     .nav .wrap{grid-template-columns:minmax(0,1fr);height:60px}
     .nav-links{display:none}
-    .wordmark{grid-area:1/1;justify-self:center;font-size:calc(26px*var(--mk))}
+    .wordmark{grid-area:1/1;justify-self:center;font-size:calc(20px*var(--mk))}
     .nav-right{grid-area:1/1;justify-self:stretch;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
     .nav-right > *{pointer-events:auto}
     .menu-btn{display:block;order:-1;margin:0 0 0 -10px}
@@ -324,7 +328,7 @@
     .qv-card{max-height:94vh;border-radius:14px 14px 0 0}
   }
   @media (max-width:380px){
-    .wordmark{font-size:calc(23px*var(--mk))}
+    .wordmark{font-size:calc(17.5px*var(--mk))}
     .hero h1{font-size:calc(34px*var(--hs))}
   }
   @media (hover:none){

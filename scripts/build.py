@@ -1,6 +1,6 @@
-"""Assembles index.html and story.html from pages/*.html and parts/*.
+"""Assembles index.html and about/index.html (served at /about/) from pages/*.html and parts/*.
    python3 scripts/build.py   (after scripts/build_assets.py if photos changed)"""
-import json
+import json, os
 g = json.load(open('scripts/generated.json'))
 css = open('parts/css.css').read()
 spring = ['  @supports (transition-timing-function: linear(0, 1)){', '    :root{']
@@ -20,12 +20,12 @@ PAGES = {
     preload='<link rel="preload" as="image" type="image/webp" href="assets/img/hero-1-640.webp" imagesrcset="assets/img/hero-1-640.webp 640w, assets/img/hero-1-1050.webp 1050w" imagesizes="(max-width:900px) 92vw, 560px" fetchpriority="high">\n',
     skip=('#shop', 'Skip to past work'),
     header=dict(HOME_HREF='#top', HOME_HREF_MENU='#shop', STORY_ACTIVE='', STORY_CURRENT='')),
-  'story.html': dict(src='pages/story.html', js='parts/story.js',
+  'about/index.html': dict(src='pages/story.html', js='parts/story.js',
     title='Our Story — Chump Change Crochet',
     desc='Chump Change Crochet started at a folding table in a church basement. Every piece is designed, hooked, blocked, and framed by hand.',
     preload='',
     skip=('#story', 'Skip to our story'),
-    header=dict(HOME_HREF='index.html', HOME_HREF_MENU='index.html', STORY_ACTIVE=' active', STORY_CURRENT=' aria-current="page"')),
+    header=dict(HOME_HREF='/', HOME_HREF_MENU='/', STORY_ACTIVE=' active', STORY_CURRENT=' aria-current="page"')),
 }
 for out, p in PAGES.items():
     header = header_t
@@ -38,5 +38,11 @@ for out, p in PAGES.items():
     assert '{{' not in html.replace('{{', '', 0) or True
     left = [x for x in ('{{TITLE}}','{{CSS}}','{{HEADER}}','{{FOOTER}}','{{PAGE_JS}}','{{HOME_HREF}}') if x in html]
     assert not left, left
+    if out.startswith('about/'):
+        html = html.replace('assets/', '/assets/')   # page lives one folder down: use root-absolute asset paths
+        os.makedirs('about', exist_ok=True)
     open(out, 'w').write(html)
     print(out, len(html) // 1024, 'KB')
+
+# old address: keep story.html working by sending it to /about/
+open('story.html', 'w').write('<!doctype html><meta charset="utf-8"><title>Our Story</title><meta http-equiv="refresh" content="0;url=/about/"><link rel="canonical" href="/about/"><a href="/about/">Our Story</a>\n')
