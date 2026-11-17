@@ -100,6 +100,17 @@ addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), 
 nav.classList.toggle('scrolled', scrollY > 8);
 
 /* ================= scroll reveals ================= */
+/* A soft arrival: the block drifts up a short way while it fades in, both on long, gentle ease-outs, and the
+   photo inside settles from a slight zoom. Movement is a little longer than the fade so nothing seems to pop. */
+function reveal(el, { delay = 0 } = {}) {
+  if (reduced()) { el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, delay, fill: 'backwards' }); return; }
+  const soft = 'cubic-bezier(.22,.8,.3,1)';
+  el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 950, delay, easing: 'cubic-bezier(.45,.05,.25,1)', fill: 'backwards' });
+  el.animate([{ transform: 'translateY(26px)' }, { transform: 'none' }], { duration: 1050, delay, easing: soft, fill: 'backwards' });
+  const img = $('.ph img', el);
+  if (img) img.animate([{ transform: 'scale(1.045)' }, { transform: 'scale(1)' }], { duration: 1500, delay, easing: soft, fill: 'backwards' });
+}
+
 function observeReveals() {
   const els = $$('[data-reveal]:not(.is-in)');
   if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('is-in')); return; }
@@ -108,11 +119,11 @@ function observeReveals() {
       .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left);
     seen.forEach((en, i) => {
       const el = en.target; io.unobserve(el);
-      const delay = reduced() ? 0 : parseInt(el.dataset.delay || '0', 10) + Math.min(i, 3) * 70;
+      const delay = reduced() ? 0 : parseInt(el.dataset.delay || '0', 10) + Math.min(i, 3) * 110;
       el.classList.add('is-in');
-      rise(el, { delay });
+      reveal(el, { delay });
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
   els.forEach(el => io.observe(el));
 }
 
