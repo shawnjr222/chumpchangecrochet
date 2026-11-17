@@ -21,7 +21,7 @@ PAGES = {
     skip=('#shop', 'Skip to past work'),
     header=dict(HOME_HREF='#top', HOME_HREF_MENU='#shop', STORY_ACTIVE='', STORY_CURRENT='')),
   'about/index.html': dict(src='pages/story.html', js='parts/story.js',
-    title='Our Story — Chump Change Crochet',
+    title='My Story — Chump Change Crochet',
     desc='Chump Change Crochet started about four years ago as a self-taught hobby. Every piece is crocheted and carefully blocked by hand in small batches.',
     preload='',
     skip=('#story', 'Skip to the story'),
@@ -45,4 +45,4 @@ for out, p in PAGES.items():
     print(out, len(html) // 1024, 'KB')
 
 # old address: keep story.html working by sending it to /about/
-open('story.html', 'w').write('<!doctype html><meta charset="utf-8"><title>Our Story</title><meta http-equiv="refresh" content="0;url=/about/"><link rel="canonical" href="/about/"><a href="/about/">Our Story</a>\n')
+open('story.html', 'w').write('<!doctype html><meta charset="utf-8"><title>My Story</title><meta http-equiv="refresh" content="0;url=/about/"><link rel="canonical" href="/about/"><a href="/about/">My Story</a>\n')
