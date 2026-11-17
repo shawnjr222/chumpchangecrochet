@@ -492,7 +492,12 @@ function heroIntro() {
   const q = quick();
   $$('.hero-copy [data-intro="rise"]').forEach((el, i) => rise(el, q ? { delay: 80 + i * 120, dur: 900, y: 0, fx: 900 } : { delay: 120 + i * 80 }));
   const art = $('.hero-art [data-art]'); if (!art) return;
-  if (q) { art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1000, delay: 200, easing: EASE.fx, fill: 'backwards' }); return; }
+  if (q) {
+    art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1000, delay: 200, easing: EASE.fx, fill: 'backwards' });
+    /* the plaid mat dissolves in after the photo, never before it */
+    const mat = $('.hero-art .mat'); if (mat) mat.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, delay: 700, easing: EASE.fx, fill: 'backwards' });
+    return;
+  }
   art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, delay: 200, easing: EASE.fx, fill: 'backwards' });
   const img = $('img', art); if (img) img.animate([{ transform: 'scale(1.06)' }, { transform: 'scale(1)' }], { duration: 1400, delay: 200, easing: EASE.emph, fill: 'backwards' });
   $('.hero-art .mat').animate([{ opacity: 0, transform: 'translate(-14px,-14px)' }, { opacity: 1, transform: 'none' }], { duration: 900, delay: 560, easing: EASE.emph, fill: 'backwards' });
