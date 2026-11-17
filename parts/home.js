@@ -1,11 +1,11 @@
 /* ================= data ================= */
 const PRODUCTS = [
-  { id:'starburst-no-1', n:1, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, size:'14 × 14 in', desc:'My show-off. A big radial burst in warm neutrals — the piece everybody points at first.' },
-  { id:'cobalt-study', n:2, name:'Framed handmade brown filet crochet sea shell wall art', price:37.45, size:'10 × 10 in', desc:'A moody little number in deep blue. Small but mighty — likes a quiet wall.' },
-  { id:'radial-bloom', n:3, name:'Framed handmade brown filet crochet sand dollar wall art', price:37.45, size:'12 × 12 in', desc:'Like a flower, if flowers were made of yarn and opinions.' },
-  { id:'hearth-frame', n:4, name:'Framed handmade brown filet crochet beetle wall art in wooden frame', price:47.95, size:'11 × 11 in', desc:'Cozy as a quilt, tidy as a frame. An easy first piece for a bare hallway.' },
-  { id:'openwork-study-i', n:5, name:'Brown framed filet crochet abstract flower heart wall art', price:37.45, size:'12 × 10 in', desc:'Lacy, airy, and a little bit fancy. Catches the afternoon light something lovely.' },
-  { id:'ember-grid', n:6, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, size:'13 × 13 in', desc:'Warm geometric rows — modern, but make it handmade.' }
+  { id:'starburst-no-1', n:1, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, desc:'My show-off. A big radial burst in warm neutrals — the piece everybody points at first.' },
+  { id:'cobalt-study', n:2, name:'Framed handmade brown filet crochet sea shell wall art', price:37.45, desc:'A moody little number in deep blue. Small but mighty — likes a quiet wall.' },
+  { id:'radial-bloom', n:3, name:'Framed handmade brown filet crochet sand dollar wall art', price:37.45, desc:'Like a flower, if flowers were made of yarn and opinions.' },
+  { id:'hearth-frame', n:4, name:'Framed handmade brown filet crochet beetle wall art in wooden frame', price:47.95, desc:'Cozy as a quilt, tidy as a frame. An easy first piece for a bare hallway.' },
+  { id:'openwork-study-i', n:5, name:'Brown framed filet crochet abstract flower heart wall art', price:37.45, desc:'Lacy, airy, and a little bit fancy. Catches the afternoon light something lovely.' },
+  { id:'ember-grid', n:6, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, desc:'Warm geometric rows — modern, but make it handmade.' }
 ];
 const DETAILS = ['100% cotton yarn', 'Hand-crocheted & blocked', 'Arrives framed, ready to hang', 'Ships in 3–5 days'];
 /* Piece names are the titles from the Depop listings (the listing is the source). Openwork Study II has no listing yet, so it keeps its working name.
@@ -36,8 +36,7 @@ function cardHTML(p) {
     <div class="ph pimg" data-piece="${p.n}">
       <span class="quick" aria-hidden="true">View details</span>
     </div>
-    <div class="pmeta"><h3>${p.name}</h3><span class="price">${money(p.price)}</span></div>
-    <p class="psub">${p.size}</p></article>`;
+    <div class="pmeta"><h3>${p.name}</h3><span class="price">${money(p.price)}</span></div></article>`;
 }
 const grid = $('#grid');
 grid.innerHTML = PRODUCTS.map(cardHTML).join('');
