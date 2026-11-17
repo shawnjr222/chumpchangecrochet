@@ -88,9 +88,7 @@
   .link{position:relative;text-decoration:none;padding:4px 0;display:inline-block}
   .link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;
     transition:transform var(--fx-slow) var(--ease-emph)}
-  .link:hover::after,.link.active::after{transform:scaleX(1);background:var(--link-green)}
-  .link.active::after{height:2px}
-  /* links turn green on hover; the current page's link (and its underline) stays green */
+  .link:hover::after,.link.active::after{transform:scaleX(1);background:var(--link-green)}  /* links turn green on hover; the current page's link (and its underline) stays green */
   .link,.wordmark,.shop-link,.mobile-menu a{transition:color var(--fx-slow) var(--ease-fx)}
   .link:hover,.link.active,.wordmark:hover,.shop-link:hover,.mobile-menu a:hover,.mobile-menu a[aria-current="page"]{color:var(--link-green)}
   .wordmark{font-family:var(--font-hand);font-weight:var(--mw);font-size:calc(33px*var(--mk));letter-spacing:var(--mls);line-height:1;text-decoration:none;color:var(--ink);justify-self:center;white-space:nowrap}
