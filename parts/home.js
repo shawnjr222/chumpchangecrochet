@@ -1,16 +1,15 @@
 /* ================= data ================= */
 const PRODUCTS = [
-  { id:'starburst-no-1', n:1, name:'Starburst No. 1', price:53.20, size:'14 × 14 in', desc:'Our show-off. A big radial burst in warm neutrals — the piece everybody points at first.' },
-  { id:'cobalt-study', n:2, name:'Cobalt Study', price:37.45, size:'10 × 10 in', desc:'A moody little number in deep blue. Small but mighty — likes a quiet wall.' },
-  { id:'radial-bloom', n:3, name:'Radial Bloom', price:37.45, size:'12 × 12 in', desc:'Like a flower, if flowers were made of yarn and opinions.' },
-  { id:'hearth-frame', n:4, name:'Hearth Frame', price:47.95, size:'11 × 11 in', desc:'Cozy as a quilt, tidy as a frame. An easy first piece for a bare hallway.' },
-  { id:'openwork-study-i', n:5, name:'Openwork Study I', price:37.45, size:'12 × 10 in', desc:'Lacy, airy, and a little bit fancy. Catches the afternoon light something lovely.' },
-  { id:'ember-grid', n:6, name:'Ember Grid', price:53.20, size:'13 × 13 in', desc:'Warm geometric rows — modern, but make it handmade.' },
-  { id:'meadow-loop', n:7, name:'Meadow Loop', price:47.95, size:'11 × 12 in', desc:'Soft loops in meadow tones. Basically a hug for your wall.' },
-  { id:'openwork-study-ii', n:8, name:'Openwork Study II', price:null, size:'12 × 10 in', desc:'The sequel! Looser, breezier, twice the charm.' }
+  { id:'starburst-no-1', n:1, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, size:'14 × 14 in', desc:'Our show-off. A big radial burst in warm neutrals — the piece everybody points at first.' },
+  { id:'cobalt-study', n:2, name:'Framed handmade brown filet crochet sea shell wall art', price:37.45, size:'10 × 10 in', desc:'A moody little number in deep blue. Small but mighty — likes a quiet wall.' },
+  { id:'radial-bloom', n:3, name:'Framed handmade brown filet crochet sand dollar wall art', price:37.45, size:'12 × 12 in', desc:'Like a flower, if flowers were made of yarn and opinions.' },
+  { id:'hearth-frame', n:4, name:'Framed handmade brown filet crochet beetle wall art in wooden frame', price:47.95, size:'11 × 11 in', desc:'Cozy as a quilt, tidy as a frame. An easy first piece for a bare hallway.' },
+  { id:'openwork-study-i', n:5, name:'Brown framed filet crochet abstract flower heart wall art', price:37.45, size:'12 × 10 in', desc:'Lacy, airy, and a little bit fancy. Catches the afternoon light something lovely.' },
+  { id:'ember-grid', n:6, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, size:'13 × 13 in', desc:'Warm geometric rows — modern, but make it handmade.' }
 ];
 const DETAILS = ['100% cotton yarn', 'Hand-crocheted & blocked', 'Arrives framed, ready to hang', 'Ships in 3–5 days'];
-/* Where each piece lives on Depop. Several site photos show the same design, so some share a listing.
+/* Piece names are the titles from the Depop listings (the listing is the source). Openwork Study II has no listing yet, so it keeps its working name.
+   Where each piece lives on Depop. Several site photos show the same design, so some share a listing.
    Anything without a confirmed listing falls back to the shop page. */
 const DEPOP_SHOP = 'https://www.depop.com/chumpchangecrochet/';
 const DEPOP = {
@@ -29,7 +28,7 @@ const ariaPrice = p => p.price == null ? '' : ', ' + money(p.price);
 const byId = id => PRODUCTS.find(p => p.id === id);
 
 const heroImg = fillPhoto($('#heroPh'), GEN.hero, GEN.hero.widths.map(w => `assets/img/hero-1-${w}.webp ${w}w`).join(', '),
-  { sizes: '(max-width:900px) 92vw, 560px', eager: true, alt: 'Starburst No. 1, a large radial crocheted wall piece' });
+  { sizes: '(max-width:900px) 92vw, 560px', eager: true, alt: byId('starburst-no-1').name });
 
 /* ================= grid ================= */
 function cardHTML(p) {
@@ -38,7 +37,7 @@ function cardHTML(p) {
       <span class="quick" aria-hidden="true">View details</span>
     </div>
     <div class="pmeta"><h3>${p.name}</h3><span class="price">${money(p.price)}</span></div>
-    <p class="psub"><b>One of one</b>${p.size}</p></article>`;
+    <p class="psub">${p.size}</p></article>`;
 }
 const grid = $('#grid');
 grid.innerHTML = PRODUCTS.map(cardHTML).join('');

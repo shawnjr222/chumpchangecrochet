@@ -92,7 +92,19 @@
   .nav-right{justify-self:end;display:flex;align-items:center;gap:14px}
   .shop-link{display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-decoration:none;padding:10px 0;position:relative}
   .shop-link .ic{width:14px;height:14px;transition:transform var(--fx-slow) var(--ease-emph)}
-  .shop-link:hover .ic{transform:translate(2px,-2px)}
+  /* link arrows: on hover the arrow slides out and a fresh one glides in (same motion as shawnjr.online) */
+  .arrow-slide{position:relative;display:inline-block;width:14px;height:14px;flex:0 0 auto;overflow:hidden}
+  .btn .arrow-slide{width:18px;height:18px}
+  .arrow-slide .ic{width:100%;height:100%;vertical-align:top}
+  .arrow-out,.arrow-in{position:absolute;inset:0;will-change:transform}
+  .arrow-in{transform:translate(-100%,100%)}
+  .arrow-slide.go-r .arrow-in{transform:translate(-100%,0)}
+  @media (hover:hover){
+    a:hover>.arrow-slide .arrow-out{transform:translate(100%,-100%);transition:transform 460ms cubic-bezier(.65,0,.35,1)}
+    a:hover>.arrow-slide .arrow-in{transform:translate(0,0);transition:transform 460ms cubic-bezier(.65,0,.35,1) 80ms}
+    a:hover>.arrow-slide.go-r .arrow-out{transform:translate(100%,0)}
+  }
+  @media (prefers-reduced-motion:reduce){a:hover>.arrow-slide .arrow-out,a:hover>.arrow-slide .arrow-in{transition:none}}
   .menu-btn{display:none;background:none;border:none;width:44px;height:44px;color:var(--ink);position:relative;margin-right:-10px}
   .menu-btn i{position:absolute;left:11px;right:11px;height:1.5px;background:currentColor;
     transition:transform var(--sp-fast-d) var(--sp-fast-e),opacity var(--fx-fast) var(--ease-fx)}
@@ -112,7 +124,6 @@
     letter-spacing:.02em;padding:15px 30px;border-radius:999px;border:1px solid var(--ink);min-height:50px;white-space:nowrap;
     transition:background var(--fx-slow) var(--ease-fx),color var(--fx-slow) var(--ease-fx),border-color var(--fx-slow) var(--ease-fx)}
   .btn .ic{width:18px;height:18px;transition:transform var(--fx-slow) var(--ease-emph)}
-  .btn:hover .ic.go{transform:translateX(4px)}
   .btn-solid{background:var(--red);border-color:var(--red);color:var(--cream)}
   .btn-solid:hover{background:var(--red-dark);border-color:var(--red-dark)}
   .btn-line{position:relative;background:#fff;border-color:rgba(var(--accent-rgb),.35);color:var(--red-dark)}
@@ -162,7 +173,7 @@
   .shop-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:44px}
   .shop-head h2{font-family:var(--font-serif);font-weight:var(--hw);font-size:calc(clamp(36px,4.2vw,56px)*var(--hs));letter-spacing:calc(-.02em*var(--ls));line-height:1.05}
   .shop-head h2 em{font-style:normal;color:var(--red)}
-  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:48px 28px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:56px 32px}
   .pcard{cursor:pointer;display:block}
   .pcard:focus-visible{outline-offset:6px}
   .pimg{aspect-ratio:1/1;border-radius:3px}
@@ -176,19 +187,32 @@
   .pmeta h3{font-family:var(--font-serif);font-weight:var(--hw);font-size:calc(19px*var(--hs));line-height:1.25}
   .price{font-variant-numeric:tabular-nums;font-weight:500}
   .psub{color:var(--ink-soft);font-size:13px;margin-top:2px}
-  .psub b{color:var(--red);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:10.5px;margin-right:8px}
+
+  /* ---------- instagram feature: a scroll-snap carousel ---------- */
+  .ig{--ig-pad:max(32px,calc((100vw - 1240px)/2 + 32px));background:var(--cream-2);padding:104px 0 112px;overflow:hidden}
+  .ig-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:40px}
+  .ig-head h2{font-family:var(--font-serif);font-weight:var(--hw);font-size:calc(clamp(34px,4vw,52px)*var(--hs));line-height:1.05;letter-spacing:calc(-.02em*var(--ls))}
+  .ig-head h2 em{font-style:normal;color:var(--red)}
+  .ig-track{display:flex;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--ig-pad);
+    padding:6px var(--ig-pad) 28px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .ig-track::-webkit-scrollbar{display:none}
+  .ig-track:focus-visible{outline-offset:-4px}
+  .ig-card{position:relative;flex:0 0 clamp(200px,21vw,290px);scroll-snap-align:start;display:block;color:inherit;text-decoration:none}
+  .ig-card .ph{aspect-ratio:1/1;border-radius:3px;box-shadow:0 1px 2px rgba(var(--shadow-rgb),.1),0 6px 14px -8px rgba(var(--shadow-rgb),.22)}
+  .ig-card:focus-visible{outline-offset:4px}
+  @media (hover:hover){.ig-card:hover .ph img{transform:scale(1.035)}}
 
   /* ---------- footer ---------- */
-  footer{background:var(--f-bg);color:var(--f-text);content-visibility:auto;contain-intrinsic-size:auto 340px}
-  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;padding-top:68px;padding-bottom:52px}
-  .foot-word{font-family:var(--font-hand);font-weight:var(--mw);font-size:calc(40px*var(--mk));letter-spacing:var(--mls);color:var(--f-word);line-height:1;margin-bottom:14px}
-  .foot-grid p{font-size:14px;color:var(--f-soft);max-width:34ch}
-  .foot-grid h5{color:var(--kraft);margin-bottom:16px}
-  .foot-grid ul{list-style:none;display:grid;gap:10px}
+  footer{background:var(--f-bg);color:var(--f-text);content-visibility:auto;contain-intrinsic-size:auto 360px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;padding-top:88px;padding-bottom:64px}
+  .foot-word{font-family:var(--font-hand);font-weight:var(--mw);font-size:calc(40px*var(--mk));letter-spacing:var(--mls);color:var(--f-word);line-height:1;margin-bottom:18px}
+  .foot-grid p{font-size:14px;line-height:1.65;color:var(--f-soft);max-width:34ch}
+  .foot-grid h5{color:var(--kraft);margin-bottom:20px}
+  .foot-grid ul{list-style:none;display:grid;gap:14px}
   .foot-grid ul a{text-decoration:none;font-size:14.5px;color:var(--f-text);display:inline-flex;align-items:center;gap:8px}
   .foot-grid ul a:hover{color:var(--f-hover)}
   .foot-grid ul .ic{width:17px;height:17px}
-  .foot-base{border-top:1px solid var(--f-rule);padding-top:20px;padding-bottom:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--f-base)}
+  .foot-base{border-top:1px solid var(--f-rule);padding-top:26px;padding-bottom:38px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--f-base)}
 
   /* ---------- scrim, quick view, drawer ---------- */
   .scrim{position:fixed;inset:0;background:rgba(var(--scrim-rgb),.45);opacity:0;visibility:hidden;z-index:80;
@@ -217,7 +241,6 @@
   /* ---------- story page ---------- */
   .hero-art.square .ph{aspect-ratio:1/1}
   .story-copy p{font-size:17px;max-width:54ch;margin-bottom:18px;color:var(--ink-body)}
-  .story-copy .lede-p{font-size:19px;color:var(--ink)}
   .story-copy .sig{font-family:var(--font-hand);font-weight:var(--mw);font-size:calc(30px*var(--mk));color:var(--red-dark);margin-top:26px}
   .values{list-style:none;margin-top:34px;display:grid;gap:0;border-top:1px solid var(--line);max-width:54ch}
   .values li{padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;display:flex;justify-content:space-between;gap:16px}
@@ -269,7 +292,10 @@
   @media (max-width:1020px){
     .grid{grid-template-columns:repeat(3,1fr)}
     .hero .wrap{grid-template-columns:1fr;gap:64px}
-    .hero-art{justify-self:start;width:min(100%,520px);margin-right:30px}
+    .hero-art{justify-self:center;width:min(100%,520px);margin-right:30px}
+    .hero-copy{text-align:center}
+    .hero .lede{margin-left:auto;margin-right:auto}
+    .hero-cta{justify-content:center}
     .qv-card{grid-template-columns:minmax(0,1fr)}
     .qv-photo{min-height:0}
     .qv-photo .ph{position:relative;inset:auto;aspect-ratio:4/3;height:auto}
@@ -277,24 +303,40 @@
   }
   @media (max-width:720px){
     .wrap{padding:0 20px}
-    .nav .wrap{grid-template-columns:auto 1fr;height:60px}
+    /* Menu left, wordmark centred, Depop right. The wordmark and the controls share one grid cell so it is centred
+       on the screen, not on whatever space is left over. */
+    .nav .wrap{grid-template-columns:minmax(0,1fr);height:60px}
     .nav-links{display:none}
-    .menu-btn{display:block}
-    .wordmark{font-size:calc(27px*var(--mk));justify-self:start}
+    .wordmark{grid-area:1/1;justify-self:center;font-size:calc(26px*var(--mk))}
+    .nav-right{grid-area:1/1;justify-self:stretch;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+    .nav-right > *{pointer-events:auto}
+    .menu-btn{display:block;order:-1;margin:0 0 0 -10px}
+    .shop-link .sl-pre{display:none}
     .mobile-menu > div{padding:0 20px}
     .hero{padding:40px 0 64px}
     .hero-art .mat{inset:18px -18px -18px 18px}
-    .hero-art{margin-right:18px}
-    .hero-cta .btn{flex:1}
+    .hero-art{width:calc(100% - 18px);margin-right:18px}
+    .hero-cta{flex-wrap:nowrap;gap:10px}
+    .hero-cta .btn{flex:1 1 0;min-width:0;padding:12px 14px;gap:8px;font-size:14px;line-height:1.25;white-space:normal;text-align:center;text-wrap:balance}
     .promise .wrap{grid-template-columns:1fr}
-    .pitem{border-left:0;border-top:1px solid var(--line);padding:22px 0}
+    .pitem{border-left:0;border-top:1px solid var(--line);padding:22px 0;text-align:center}
+    .pitem p{margin-left:auto;margin-right:auto}
     .pitem:first-child{border-top:0}
-    .shop{padding:72px 0 80px}
-    .shop-head{flex-direction:column;align-items:flex-start}
+    .shop{padding:72px 0 96px}
+    .ig{--ig-pad:20px;padding:72px 0 80px}
+    .ig-head{flex-direction:column;align-items:center;text-align:center;margin-bottom:32px}
+    .ig-track{gap:14px}
+    .ig-card{flex-basis:64vw}
+    .shop-head{flex-direction:column;align-items:center;text-align:center}
     .grid{grid-template-columns:repeat(2,1fr);gap:36px 14px}
-    .pmeta{flex-direction:column;gap:2px}
-    .pmeta h3{font-size:16.5px}
-    .foot-grid{grid-template-columns:1fr;gap:34px}
+    .pcard{text-align:center}
+    .pmeta{flex-direction:column;align-items:center;gap:2px}
+    .pmeta h3{font-size:14.5px;line-height:1.3}
+    footer{contain-intrinsic-size:auto 500px}
+    .foot-grid{grid-template-columns:1fr;gap:44px;text-align:center;justify-items:center;padding-top:68px;padding-bottom:52px}
+    .foot-grid p{margin-left:auto;margin-right:auto}
+    .foot-grid ul{justify-items:center}
+    .foot-base{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding-top:26px;padding-bottom:max(40px,calc(24px + env(safe-area-inset-bottom)))}
     .qv{padding:0;align-items:end}
     .cm{padding:0;align-items:end}
     .cm-card{max-height:94vh;border-radius:14px 14px 0 0}
@@ -303,6 +345,10 @@
     .cm-head .t{font-size:15.5px}
     .cm-list > div{grid-template-columns:96px 1fr;gap:10px}
     .qv-card{max-height:94vh;border-radius:14px 14px 0 0}
+  }
+  @media (max-width:380px){
+    .wordmark{font-size:calc(23px*var(--mk))}
+    .hero h1{font-size:calc(34px*var(--hs))}
   }
   @media (hover:none){
     .quick{opacity:1;transform:none;min-height:42px;font-size:12.5px;left:8px;right:8px;bottom:8px}
@@ -325,7 +371,7 @@
     </nav>
     <a class="wordmark" href="#top" data-intro aria-label="Chump Change Crochet, home">Chump Change</a>
     <div class="nav-right" data-intro>
-      <a class="shop-link caps" href="https://www.depop.com/chumpchangecrochet/" target="_blank" rel="noopener noreferrer">Shop on Depop <svg class="ic" aria-hidden="true"><use href="#i-out"/></svg></a>
+      <a class="shop-link caps" href="https://www.depop.com/chumpchangecrochet/" target="_blank" rel="noopener noreferrer"><span class="sl-pre">Shop on </span>Depop <span class="arrow-slide" aria-hidden="true"><span class="arrow-out"><svg class="ic"><use href="#i-out"/></svg></span><span class="arrow-in"><svg class="ic"><use href="#i-out"/></svg></span></span></a>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><i></i><i></i></button>
     </div>
   </div>
@@ -341,17 +387,16 @@
   <section class="hero" id="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <span class="eyebrow caps" data-intro="rise">Handmade in San Francisco</span>
-        <h1 data-intro="rise"><span class="ln">Hooked with love,</span> <span class="ln"><em>hung with pride.</em></span></h1>
-        <p class="lede" data-intro="rise">One-of-one crocheted wall art, made slow and sweet. Every piece is designed, hooked, and framed by hand — when it's gone, it's gone for good.</p>
+        <h1 data-intro="rise"><span class="ln">Handmade in</span> <span class="ln"><em>San Francisco</em></span></h1>
+        <p class="lede" data-intro="rise">One-of-one filet crochet wall art, made slowly and by hand. Every piece is crocheted with 100% cotton yarn and blocked to bring out every detail. Ships ready to decorate on your wall!</p>
         <div class="hero-cta" data-intro="rise">
-          <a class="btn btn-solid" href="#shop">View past work<svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-solid" href="#shop">View past work<span class="arrow-slide go-r" aria-hidden="true"><span class="arrow-out"><svg class="ic"><use href="#i-arrow"/></svg></span><span class="arrow-in"><svg class="ic"><use href="#i-arrow"/></svg></span></span></a>
           <button type="button" class="btn btn-line" id="customOpen" aria-haspopup="dialog">Contact for a custom piece<span class="hearts" aria-hidden="true"><svg class="ic"><use href="#i-heart"/></svg><svg class="ic"><use href="#i-heart"/></svg><svg class="ic"><use href="#i-heart"/></svg></span></button>
         </div>
       </div>
       <div class="hero-art" data-intro="art">
         <div class="mat gingham-soft" aria-hidden="true"></div>
-        <button class="frame" data-open="starburst-no-1" aria-label="View Starburst No. 1, $53.20">
+        <button class="frame" data-open="starburst-no-1" aria-label="View details for the featured piece">
           <div class="ph" id="heroPh"></div>
         </button>
       </div>
@@ -361,9 +406,9 @@
   <!-- PROMISE -->
   <section class="promise">
     <div class="wrap">
-      <div class="pitem" data-reveal><h4>Hooked entirely by hand</h4><p>No machines, no shortcuts — just a hook, some yarn, and patience.</p></div>
-      <div class="pitem" data-reveal data-delay="70"><h4>One of one, always</h4><p>When a piece finds its wall, that design retires for good.</p></div>
-      <div class="pitem" data-reveal data-delay="140"><h4>Ships with a thank-you note</h4><p>Handwritten, obviously. Flat-packed and framed, ready to hang.</p></div>
+      <div class="pitem" data-reveal><h4>Hooked entirely by hand</h4><p>No machines, no shortcuts - just a hook, some yarn, and patience.</p></div>
+      <div class="pitem" data-reveal data-delay="70"><h4>One-of-one pieces</h4><p>Every piece is made individually. Have your eye on something that's already sold? Feel free to ask about a similar piece!</p></div>
+      <div class="pitem" data-reveal data-delay="140"><h4>Shipped with love</h4><p>Packaged with a little thank-you note! Framed pieces are available for local pickup in San Francisco.</p></div>
     </div>
   </section>
 
@@ -374,6 +419,37 @@
         <h2 data-reveal>Past work</h2>
       </div>
       <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM: the latest posts as a swipeable carousel. Each card links to its post. To update, change the href (post link) and the img src of each .ig-card. -->
+  <section class="ig" id="instagram">
+    <div class="wrap">
+      <div class="ig-head" data-reveal>
+        <div>
+          <h2>From our <em>Instagram</em></h2>
+        </div>
+      </div>
+    </div>
+    <div class="ig-track" id="igTrack" role="region" aria-label="Latest Instagram posts" tabindex="0" data-reveal>
+      <a class="ig-card" href="https://www.instagram.com/chumpchangecrochet/p/Ddhr4aAj_Rq/" target="_blank" rel="noopener noreferrer" aria-label="View the post from Sep 20, 2026 on Instagram">
+        <div class="ph"><img class="loaded" src="assets/img/ig-1.webp" alt="" width="640" height="640" loading="lazy" decoding="async"></div>
+      </a>
+      <a class="ig-card" href="https://www.instagram.com/chumpchangecrochet/p/DckNt65G4_P/" target="_blank" rel="noopener noreferrer" aria-label="View the post from Aug 27, 2026 on Instagram">
+        <div class="ph"><img class="loaded" src="assets/img/ig-2.webp" alt="" width="640" height="640" loading="lazy" decoding="async"></div>
+      </a>
+      <a class="ig-card" href="https://www.instagram.com/chumpchangecrochet/p/DI0ESyBx3i8/" target="_blank" rel="noopener noreferrer" aria-label="View the post from Apr 23, 2025 on Instagram">
+        <div class="ph"><img class="loaded" src="assets/img/ig-3.webp" alt="" width="640" height="640" loading="lazy" decoding="async"></div>
+      </a>
+      <a class="ig-card" href="https://www.instagram.com/chumpchangecrochet/p/DHgrVuYPmAZ/" target="_blank" rel="noopener noreferrer" aria-label="View the post from Mar 22, 2025 on Instagram">
+        <div class="ph"><img class="loaded" src="assets/img/ig-4.webp" alt="" width="640" height="640" loading="lazy" decoding="async"></div>
+      </a>
+      <a class="ig-card" href="https://www.instagram.com/chumpchangecrochet/p/DE76JckSUl9/" target="_blank" rel="noopener noreferrer" aria-label="View the post from Jan 17, 2025 on Instagram">
+        <div class="ph"><img class="loaded" src="assets/img/ig-5.webp" alt="" width="640" height="640" loading="lazy" decoding="async"></div>
+      </a>
+      <a class="ig-card" href="https://www.instagram.com/chumpchangecrochet/p/DD47lHsSxAV/" target="_blank" rel="noopener noreferrer" aria-label="View the post from Dec 22, 2024 on Instagram">
+        <div class="ph"><img class="loaded" src="assets/img/ig-6.webp" alt="" width="640" height="640" loading="lazy" decoding="async"></div>
+      </a>
     </div>
   </section>
 </main>
@@ -395,7 +471,7 @@
   </div>
   <div class="wrap foot-base">
     <span>© 2026 Chump Change Crochet.</span>
-    <span>Made with Love ❤️</span>
+    <span>Made with 💚</span>
   </div>
 </footer>
 </div>
@@ -412,7 +488,7 @@
       <p class="qv-desc" id="qvDesc"></p>
       <ul class="qv-details" id="qvDetails"></ul>
       <div class="qv-row">
-        <a class="btn btn-solid" id="qvBuy" href="#" target="_blank" rel="noopener noreferrer" style="flex:1">Buy on Depop <svg class="ic" aria-hidden="true"><use href="#i-out"/></svg></a>
+        <a class="btn btn-solid" id="qvBuy" href="#" target="_blank" rel="noopener noreferrer" style="flex:1">Buy on Depop <span class="arrow-slide" aria-hidden="true"><span class="arrow-out"><svg class="ic"><use href="#i-out"/></svg></span><span class="arrow-in"><svg class="ic"><use href="#i-out"/></svg></span></span></a>
       </div>
     </div>
   </div>
@@ -594,17 +670,16 @@ document.addEventListener('click', e => {
 /* ================= home page ================= */
 /* ================= data ================= */
 const PRODUCTS = [
-  { id:'starburst-no-1', n:1, name:'Starburst No. 1', price:53.20, size:'14 × 14 in', desc:'Our show-off. A big radial burst in warm neutrals — the piece everybody points at first.' },
-  { id:'cobalt-study', n:2, name:'Cobalt Study', price:37.45, size:'10 × 10 in', desc:'A moody little number in deep blue. Small but mighty — likes a quiet wall.' },
-  { id:'radial-bloom', n:3, name:'Radial Bloom', price:37.45, size:'12 × 12 in', desc:'Like a flower, if flowers were made of yarn and opinions.' },
-  { id:'hearth-frame', n:4, name:'Hearth Frame', price:47.95, size:'11 × 11 in', desc:'Cozy as a quilt, tidy as a frame. An easy first piece for a bare hallway.' },
-  { id:'openwork-study-i', n:5, name:'Openwork Study I', price:37.45, size:'12 × 10 in', desc:'Lacy, airy, and a little bit fancy. Catches the afternoon light something lovely.' },
-  { id:'ember-grid', n:6, name:'Ember Grid', price:53.20, size:'13 × 13 in', desc:'Warm geometric rows — modern, but make it handmade.' },
-  { id:'meadow-loop', n:7, name:'Meadow Loop', price:47.95, size:'11 × 12 in', desc:'Soft loops in meadow tones. Basically a hug for your wall.' },
-  { id:'openwork-study-ii', n:8, name:'Openwork Study II', price:null, size:'12 × 10 in', desc:'The sequel! Looser, breezier, twice the charm.' }
+  { id:'starburst-no-1', n:1, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, size:'14 × 14 in', desc:'Our show-off. A big radial burst in warm neutrals — the piece everybody points at first.' },
+  { id:'cobalt-study', n:2, name:'Framed handmade brown filet crochet sea shell wall art', price:37.45, size:'10 × 10 in', desc:'A moody little number in deep blue. Small but mighty — likes a quiet wall.' },
+  { id:'radial-bloom', n:3, name:'Framed handmade brown filet crochet sand dollar wall art', price:37.45, size:'12 × 12 in', desc:'Like a flower, if flowers were made of yarn and opinions.' },
+  { id:'hearth-frame', n:4, name:'Framed handmade brown filet crochet beetle wall art in wooden frame', price:47.95, size:'11 × 11 in', desc:'Cozy as a quilt, tidy as a frame. An easy first piece for a bare hallway.' },
+  { id:'openwork-study-i', n:5, name:'Brown framed filet crochet abstract flower heart wall art', price:37.45, size:'12 × 10 in', desc:'Lacy, airy, and a little bit fancy. Catches the afternoon light something lovely.' },
+  { id:'ember-grid', n:6, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, size:'13 × 13 in', desc:'Warm geometric rows — modern, but make it handmade.' }
 ];
 const DETAILS = ['100% cotton yarn', 'Hand-crocheted & blocked', 'Arrives framed, ready to hang', 'Ships in 3–5 days'];
-/* Where each piece lives on Depop. Several site photos show the same design, so some share a listing.
+/* Piece names are the titles from the Depop listings (the listing is the source). Openwork Study II has no listing yet, so it keeps its working name.
+   Where each piece lives on Depop. Several site photos show the same design, so some share a listing.
    Anything without a confirmed listing falls back to the shop page. */
 const DEPOP_SHOP = 'https://www.depop.com/chumpchangecrochet/';
 const DEPOP = {
@@ -623,7 +698,7 @@ const ariaPrice = p => p.price == null ? '' : ', ' + money(p.price);
 const byId = id => PRODUCTS.find(p => p.id === id);
 
 const heroImg = fillPhoto($('#heroPh'), GEN.hero, GEN.hero.widths.map(w => `assets/img/hero-1-${w}.webp ${w}w`).join(', '),
-  { sizes: '(max-width:900px) 92vw, 560px', eager: true, alt: 'Starburst No. 1, a large radial crocheted wall piece' });
+  { sizes: '(max-width:900px) 92vw, 560px', eager: true, alt: byId('starburst-no-1').name });
 
 /* ================= grid ================= */
 function cardHTML(p) {
@@ -632,7 +707,7 @@ function cardHTML(p) {
       <span class="quick" aria-hidden="true">View details</span>
     </div>
     <div class="pmeta"><h3>${p.name}</h3><span class="price">${money(p.price)}</span></div>
-    <p class="psub"><b>One of one</b>${p.size}</p></article>`;
+    <p class="psub">${p.size}</p></article>`;
 }
 const grid = $('#grid');
 grid.innerHTML = PRODUCTS.map(cardHTML).join('');
