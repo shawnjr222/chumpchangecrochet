@@ -47,22 +47,35 @@ const seenIntro = (() => { try { return sessionStorage.getItem('ccc-intro') === 
 const markSeen = () => { try { sessionStorage.setItem('ccc-intro', '1'); } catch (e) {} };
 const quick = () => seenIntro || reduced();
 function chromeIntro() {
-  $$('.nav [data-intro]').forEach(el => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: quick() ? 160 : 500, easing: EASE.fx, fill: 'backwards' }));
+  $$('.nav [data-intro]').forEach(el => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: quick() ? 600 : 500, easing: EASE.fx, fill: 'backwards' }));
 }
 function heroIntro() {
   const q = quick();
-  $$('.hero-copy [data-intro="rise"]').forEach((el, i) => rise(el, q ? { delay: i * 30, dur: 360, y: 8, fx: 260 } : { delay: 120 + i * 80 }));
+  $$('.hero-copy [data-intro="rise"]').forEach((el, i) => rise(el, q ? { delay: 80 + i * 120, dur: 900, y: 0, fx: 900 } : { delay: 120 + i * 80 }));
   const art = $('.hero-art [data-art]'); if (!art) return;
-  if (q) { art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: EASE.fx, fill: 'backwards' }); return; }
+  if (q) { art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1000, delay: 200, easing: EASE.fx, fill: 'backwards' }); return; }
   art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, delay: 200, easing: EASE.fx, fill: 'backwards' });
   const img = $('img', art); if (img) img.animate([{ transform: 'scale(1.06)' }, { transform: 'scale(1)' }], { duration: 1400, delay: 200, easing: EASE.emph, fill: 'backwards' });
   $('.hero-art .mat').animate([{ opacity: 0, transform: 'translate(-14px,-14px)' }, { opacity: 1, transform: 'none' }], { duration: 900, delay: 560, easing: EASE.emph, fill: 'backwards' });
+}
+/* Arriving from another page: the page stays invisible (html.pt-wait) until fonts and the hero photo are ready, then dissolves in slowly. */
+const ptWait = document.documentElement.classList.contains('pt-wait');
+function revealPage() {
+  const root = document.documentElement, page = $('#page');
+  const imgs = $$('.hero-art img').filter(i => !i.complete);
+  const loaded = Promise.all(imgs.map(i => new Promise(r => { i.addEventListener('load', r, { once: true }); i.addEventListener('error', r, { once: true }); })));
+  const fonts = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+  return Promise.race([Promise.all([fonts, loaded]), new Promise(r => setTimeout(r, 1600))]).then(() => {
+    if (page && !reduced()) page.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, easing: 'cubic-bezier(.4,0,.2,1)' });
+    root.classList.remove('pt-wait');
+  });
 }
 function startIntro(play) {
   /* Start as soon as the fonts are in (so the headline doesn't reflow mid-animation), but never hold the
      screen for long: 350ms cap. Photos don't gate anything; their blur-up placeholders are already showing. */
   const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-  Promise.race([fontsReady, new Promise(r => setTimeout(r, 350))]).then(() => {
+  const gate = ptWait ? revealPage() : Promise.resolve();
+  Promise.race([fontsReady, new Promise(r => setTimeout(r, 350))]).then(() => gate).then(() => {
     const root = document.documentElement;
     if (root.classList.contains('intro-on')) return;
     root.classList.add('intro-on'); performance.mark('intro-on');
@@ -117,10 +130,9 @@ document.addEventListener('click', e => {
 });
 
 
-/* ================= page transitions: a simple dissolve out, then the next page dissolves in ================= */
+/* ================= page transitions: dissolve out, then the next page dissolves in once it is ready ================= */
 (() => {
   const page = $('#page'); if (!page) return;
-  if (seenIntro && !reduced()) page.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: 'ease-out' });
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
     if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -129,7 +141,8 @@ document.addEventListener('click', e => {
     if (u.origin !== location.origin || u.pathname === location.pathname) return;
     if (reduced()) return;
     e.preventDefault();
-    page.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, easing: 'ease-in', fill: 'forwards' }).onfinish = () => { location.href = u.href; };
+    try { sessionStorage.setItem('ccc-nav', '1'); } catch (err) {}
+    page.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 550, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' }).onfinish = () => { location.href = u.href; };
   });
-  addEventListener('pageshow', e => { if (e.persisted) page.getAnimations().forEach(x => x.cancel()); });
+  addEventListener('pageshow', e => { if (e.persisted) { page.getAnimations().forEach(x => x.cancel()); document.documentElement.classList.remove('pt-wait'); } });
 })();

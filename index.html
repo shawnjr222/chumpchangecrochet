@@ -7,7 +7,7 @@
 <meta name="description" content="One-of-one crocheted wall art, hooked by hand. Handmade in San Francisco.">
 <meta name="theme-color" content="#F3F4EA">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233F6B4A'/%3E%3Cpath d='M0 8h32M0 24h32M8 0v32M24 0v32' stroke='%23FBFCF4' stroke-opacity='.5' stroke-width='5'/%3E%3C/svg%3E">
-<script>document.documentElement.classList.add('js');if('scrollRestoration' in history)history.scrollRestoration='manual'</script>
+<script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('ccc-nav')==='1'){sessionStorage.removeItem('ccc-nav');document.documentElement.classList.add('pt-wait')}}catch(e){}if('scrollRestoration' in history)history.scrollRestoration='manual'</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" type="image/webp" href="assets/img/hero-1-640.webp" imagesrcset="assets/img/hero-1-640.webp 640w, assets/img/hero-1-1050.webp 1050w" imagesizes="(max-width:900px) 92vw, 560px" fetchpriority="high">
@@ -65,6 +65,8 @@
   .caps{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
 
   /* load gating: JS plays the intro; CSS failsafe shows the page if it never runs */
+  .pt-wait #page{opacity:0;animation:ptFail 0s linear 3.2s forwards}
+  @keyframes ptFail{to{opacity:1}}
   .js:not(.intro-on) [data-intro]{opacity:0;animation:failsafe 0s linear 2.6s forwards}
   .js [data-reveal]:not(.is-in){opacity:0}
   @keyframes failsafe{to{opacity:1}}
@@ -201,7 +203,7 @@
     padding:6px var(--ig-pad) 28px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .ig-track::-webkit-scrollbar{display:none}
   .ig-track:focus-visible{outline-offset:-4px}
-  .ig-card{position:relative;flex:0 0 clamp(200px,21vw,290px);scroll-snap-align:start;display:block;color:inherit;text-decoration:none}
+  .ig-card{position:relative;flex:0 0 clamp(240px,27vw,370px);scroll-snap-align:start;display:block;color:inherit;text-decoration:none}
   .ig-card .ph{aspect-ratio:1/1;border-radius:3px;box-shadow:0 1px 2px rgba(var(--shadow-rgb),.1),0 6px 14px -8px rgba(var(--shadow-rgb),.22)}
   .ig-card:focus-visible{outline-offset:4px}
   @media (hover:hover){.ig-card:hover .ph img{transform:scale(1.035)}}
@@ -249,14 +251,6 @@
   .values{list-style:none;margin-top:34px;display:grid;gap:0;border-top:1px solid var(--line);max-width:54ch}
   .values li{padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;display:flex;justify-content:space-between;gap:16px}
   .values li span{color:var(--ink-soft)}
-
-  /* page-to-page: the header and footer stay put while the content cross-fades (where supported) */
-  @media (prefers-reduced-motion:no-preference){
-    @view-transition{navigation:auto}
-    .nav{view-transition-name:nav}
-    footer{view-transition-name:footer}
-    ::view-transition-old(root),::view-transition-new(root){animation-duration:280ms;animation-timing-function:cubic-bezier(.2,0,0,1)}
-  }
 
   /* ---------- custom pieces popup: four steps, one open at a time. Information only; no calls to action. ---------- */
   .cm{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:24px;overflow:auto}
@@ -330,7 +324,7 @@
     .ig{--ig-pad:20px;padding:72px 0 80px}
     .ig-head{flex-direction:column;align-items:center;text-align:center;margin-bottom:32px}
     .ig-track{gap:14px}
-    .ig-card{flex-basis:64vw}
+    .ig-card{flex-basis:78vw}
     .shop-head{flex-direction:column;align-items:center;text-align:center}
     .grid{grid-template-columns:repeat(2,1fr);gap:36px 14px}
     .pcard{text-align:center}
@@ -601,22 +595,35 @@ const seenIntro = (() => { try { return sessionStorage.getItem('ccc-intro') === 
 const markSeen = () => { try { sessionStorage.setItem('ccc-intro', '1'); } catch (e) {} };
 const quick = () => seenIntro || reduced();
 function chromeIntro() {
-  $$('.nav [data-intro]').forEach(el => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: quick() ? 160 : 500, easing: EASE.fx, fill: 'backwards' }));
+  $$('.nav [data-intro]').forEach(el => el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: quick() ? 600 : 500, easing: EASE.fx, fill: 'backwards' }));
 }
 function heroIntro() {
   const q = quick();
-  $$('.hero-copy [data-intro="rise"]').forEach((el, i) => rise(el, q ? { delay: i * 30, dur: 360, y: 8, fx: 260 } : { delay: 120 + i * 80 }));
+  $$('.hero-copy [data-intro="rise"]').forEach((el, i) => rise(el, q ? { delay: 80 + i * 120, dur: 900, y: 0, fx: 900 } : { delay: 120 + i * 80 }));
   const art = $('.hero-art [data-art]'); if (!art) return;
-  if (q) { art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: EASE.fx, fill: 'backwards' }); return; }
+  if (q) { art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1000, delay: 200, easing: EASE.fx, fill: 'backwards' }); return; }
   art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, delay: 200, easing: EASE.fx, fill: 'backwards' });
   const img = $('img', art); if (img) img.animate([{ transform: 'scale(1.06)' }, { transform: 'scale(1)' }], { duration: 1400, delay: 200, easing: EASE.emph, fill: 'backwards' });
   $('.hero-art .mat').animate([{ opacity: 0, transform: 'translate(-14px,-14px)' }, { opacity: 1, transform: 'none' }], { duration: 900, delay: 560, easing: EASE.emph, fill: 'backwards' });
+}
+/* Arriving from another page: the page stays invisible (html.pt-wait) until fonts and the hero photo are ready, then dissolves in slowly. */
+const ptWait = document.documentElement.classList.contains('pt-wait');
+function revealPage() {
+  const root = document.documentElement, page = $('#page');
+  const imgs = $$('.hero-art img').filter(i => !i.complete);
+  const loaded = Promise.all(imgs.map(i => new Promise(r => { i.addEventListener('load', r, { once: true }); i.addEventListener('error', r, { once: true }); })));
+  const fonts = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+  return Promise.race([Promise.all([fonts, loaded]), new Promise(r => setTimeout(r, 1600))]).then(() => {
+    if (page && !reduced()) page.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, easing: 'cubic-bezier(.4,0,.2,1)' });
+    root.classList.remove('pt-wait');
+  });
 }
 function startIntro(play) {
   /* Start as soon as the fonts are in (so the headline doesn't reflow mid-animation), but never hold the
      screen for long: 350ms cap. Photos don't gate anything; their blur-up placeholders are already showing. */
   const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-  Promise.race([fontsReady, new Promise(r => setTimeout(r, 350))]).then(() => {
+  const gate = ptWait ? revealPage() : Promise.resolve();
+  Promise.race([fontsReady, new Promise(r => setTimeout(r, 350))]).then(() => gate).then(() => {
     const root = document.documentElement;
     if (root.classList.contains('intro-on')) return;
     root.classList.add('intro-on'); performance.mark('intro-on');
@@ -671,10 +678,9 @@ document.addEventListener('click', e => {
 });
 
 
-/* ================= page transitions: a simple dissolve out, then the next page dissolves in ================= */
+/* ================= page transitions: dissolve out, then the next page dissolves in once it is ready ================= */
 (() => {
   const page = $('#page'); if (!page) return;
-  if (seenIntro && !reduced()) page.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: 'ease-out' });
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
     if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -683,9 +689,10 @@ document.addEventListener('click', e => {
     if (u.origin !== location.origin || u.pathname === location.pathname) return;
     if (reduced()) return;
     e.preventDefault();
-    page.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, easing: 'ease-in', fill: 'forwards' }).onfinish = () => { location.href = u.href; };
+    try { sessionStorage.setItem('ccc-nav', '1'); } catch (err) {}
+    page.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 550, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' }).onfinish = () => { location.href = u.href; };
   });
-  addEventListener('pageshow', e => { if (e.persisted) page.getAnimations().forEach(x => x.cancel()); });
+  addEventListener('pageshow', e => { if (e.persisted) { page.getAnimations().forEach(x => x.cancel()); document.documentElement.classList.remove('pt-wait'); } });
 })();
 
 
