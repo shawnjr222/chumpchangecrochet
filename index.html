@@ -178,7 +178,9 @@
   .shop-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:44px}
   .shop-head h2{font-family:var(--font-serif);font-weight:var(--hw);font-size:calc(clamp(36px,4.2vw,56px)*var(--hs));letter-spacing:calc(-.02em*var(--ls));line-height:1.05}
   .shop-head h2 em{font-style:normal;color:var(--red)}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:56px 32px}
+  /* rows centre themselves, so an odd number of listings never leaves a lopsided last row */
+  .grid{--cols:3;--gx:32px;display:flex;flex-wrap:wrap;justify-content:center;gap:56px var(--gx)}
+  .grid > .pcard{flex:0 0 calc((100% - (var(--cols) - 1) * var(--gx)) / var(--cols))}
   .pcard{cursor:pointer;display:block}
   .pcard:focus-visible{outline-offset:6px}
   .pimg{aspect-ratio:1/1;border-radius:3px}
@@ -190,7 +192,7 @@
   .pcard:hover .quick,.pcard:focus-visible .quick{opacity:1;transform:none}
   .pmeta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:16px}
   .pmeta h3{font-family:var(--font-serif);font-weight:var(--hw);font-size:calc(19px*var(--hs));line-height:1.25}
-  .price{font-variant-numeric:tabular-nums;font-weight:500}
+  .price{font-variant-numeric:tabular-nums;font-weight:500;color:var(--red)}
 
   /* ---------- instagram feature: a scroll-snap carousel ---------- */
   .ig{--ig-pad:max(32px,calc((100vw - 1240px)/2 + 32px));background:var(--cream-2);padding:104px 0 112px;overflow:hidden}
@@ -232,10 +234,8 @@
   .qv-info{padding:40px 40px 32px;display:flex;flex-direction:column}
   .qv-info .caps{color:var(--red);margin-bottom:14px}
   .qv-info h3{font-family:var(--font-serif);font-weight:var(--hw);font-size:calc(36px*var(--hs));line-height:1.1;letter-spacing:calc(-.015em*var(--ls));margin-bottom:10px}
-  .qv-price{font-size:19px;font-weight:500;margin-bottom:14px;font-variant-numeric:tabular-nums}
-  .qv-desc{font-size:16px;color:var(--ink-body);margin-bottom:16px}
-  .qv-details{list-style:none;border-top:1px solid var(--line);margin-bottom:22px}
-  .qv-details li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
+  .qv-price{font-size:19px;font-weight:500;color:var(--red);margin-bottom:14px;font-variant-numeric:tabular-nums}
+  .qv-desc{font-size:16px;color:var(--ink-body);margin-bottom:12px;white-space:pre-line}
   .qv-row{display:flex;gap:12px;align-items:stretch;flex-wrap:wrap;margin-top:auto}
   .qv-close{position:absolute;top:16px;right:16px;background:var(--paper);border:1px solid var(--line);border-radius:50%;width:44px;height:44px;
     display:grid;place-items:center;color:var(--ink);z-index:7;transition:border-color var(--fx) var(--ease-fx),color var(--fx) var(--ease-fx)}
@@ -286,7 +286,6 @@
 
   /* ---------- responsive ---------- */
   @media (max-width:1020px){
-    .grid{grid-template-columns:repeat(3,1fr)}
     .hero .wrap{grid-template-columns:1fr;gap:64px}
     .hero-art{justify-self:center;width:min(100%,520px);margin-right:30px}
     .hero-copy{text-align:center}
@@ -324,7 +323,7 @@
     .ig-track{gap:14px}
     .ig-card{flex-basis:78vw}
     .shop-head{flex-direction:column;align-items:center;text-align:center}
-    .grid{grid-template-columns:repeat(2,1fr);gap:36px 14px}
+    .grid{--cols:2;--gx:14px;gap:36px var(--gx)}
     .pcard{text-align:center}
     .pmeta{flex-direction:column;align-items:center;gap:2px}
     .pmeta h3{font-size:14.5px;line-height:1.3}
@@ -357,7 +356,7 @@
 </style>
 </head>
 <body>
-<a class="skip" href="#shop">Skip to past work</a>
+<a class="skip" href="#shop">Skip to latest listings</a>
 
 <div id="page">
 <header class="nav" id="nav">
@@ -372,7 +371,7 @@
     </div>
   </div>
   <div class="mobile-menu" id="mobileMenu"><div>
-    <a href="#shop">Past work</a>
+    <a href="#shop">Latest listings</a>
     <a href="/about/">About</a>
   </div></div>
   <div class="gingham rule" id="navRule" aria-hidden="true"></div>
@@ -386,7 +385,7 @@
         <h1 data-intro="rise"><span class="ln">Handmade in</span> <span class="ln"><em>San Francisco</em></span></h1>
         <p class="lede" data-intro="rise">One-of-one filet crochet wall art, made slowly and by hand. Every piece is crocheted with 100% cotton yarn and blocked to bring out every detail. Ships ready to decorate on your wall!</p>
         <div class="hero-cta" data-intro="rise">
-          <!-- hidden for preview: <a class="btn btn-solid" href="#shop">View past work<span class="arrow-slide go-r" aria-hidden="true"><span class="arrow-out"><svg class="ic"><use href="#i-arrow"/></svg></span><span class="arrow-in"><svg class="ic"><use href="#i-arrow"/></svg></span></span></a> -->
+          <!-- hidden for preview: <a class="btn btn-solid" href="#shop">View latest listings<span class="arrow-slide go-r" aria-hidden="true"><span class="arrow-out"><svg class="ic"><use href="#i-arrow"/></svg></span><span class="arrow-in"><svg class="ic"><use href="#i-arrow"/></svg></span></span></a> -->
           <button type="button" class="btn btn-solid" id="customOpen" aria-haspopup="dialog">Contact for a custom piece<span class="hearts" aria-hidden="true"><svg class="ic"><use href="#i-heart"/></svg><svg class="ic"><use href="#i-heart"/></svg><svg class="ic"><use href="#i-heart"/></svg></span></button>
         </div>
       </div>
@@ -404,7 +403,7 @@
     <div class="wrap">
       <div class="pitem" data-reveal><h4>Hooked entirely by hand</h4><p>No machines, no shortcuts - just a hook, some yarn, and patience.</p></div>
       <div class="pitem" data-reveal data-delay="130"><h4>One-of-one pieces</h4><p>Every piece is made individually. Have your eye on something that's already sold? Feel free to ask about a similar piece!</p></div>
-      <div class="pitem" data-reveal data-delay="260"><h4>Shipped with love</h4><p>Packaged with a little thank-you note! Framed pieces are available for local pickup in San Francisco.</p></div>
+      <div class="pitem" data-reveal data-delay="260"><h4>Shipped with love</h4><p>Pieces can be shipped, or picked up locally in San Francisco. Reach out on Instagram to arrange a local pickup.</p></div>
     </div>
   </section>
 
@@ -412,7 +411,7 @@
   <section class="shop" id="shop">
     <div class="wrap">
       <div class="shop-head">
-        <h2 data-reveal>Past work</h2>
+        <h2 data-reveal>Latest listings</h2>
       </div>
       <div class="grid" id="grid"></div>
     </div>
@@ -455,7 +454,7 @@
   <div class="wrap foot-grid">
     <div>
       <div class="foot-word">Chump Change Crochet</div>
-      <p>One-of-one crocheted wall art, hooked slow &amp; sweet. Made by hand, priced with love.</p>
+      <p>Crochet you can buy with chump change. Made by hand, priced with love.</p>
     </div>
     <div>
       <h5 class="caps">Say hello</h5>
@@ -477,11 +476,10 @@
     <button class="qv-close" id="qvClose" aria-label="Close quick view"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
     <div class="qv-photo"><div class="ph" id="qvPh"><img id="qvImg" alt="" width="800" height="800" decoding="async"></div></div>
     <div class="qv-info" id="qvBody">
-      <span class="caps">One of one · Listed on Depop</span>
+      <span class="caps">Listed on Depop</span>
       <h3 id="qvName"></h3>
       <div class="qv-price" id="qvPrice"></div>
       <p class="qv-desc" id="qvDesc"></p>
-      <ul class="qv-details" id="qvDetails"></ul>
       <div class="qv-row">
         <a class="btn btn-solid" id="qvBuy" href="#" target="_blank" rel="noopener noreferrer" style="flex:1">Buy on Depop <span class="arrow-slide" aria-hidden="true"><span class="arrow-out"><svg class="ic"><use href="#i-out"/></svg></span><span class="arrow-in"><svg class="ic"><use href="#i-out"/></svg></span></span></a>
       </div>
@@ -510,7 +508,7 @@
             <div><dt>Colors</dt><dd>Ones you want, and any to avoid</dd></div>
             <div><dt>Frame</dt><dd>Wood, white, black or blue</dd></div>
             <div><dt>Date</dt><dd>When you need it</dd></div>
-            <div><dt>Shipping to</dt><dd>City and state, or country</dd></div>
+            <div><dt>Delivery</dt><dd>Shipped, or local pickup in San Francisco. If shipped, your city and state, or country</dd></div>
             <div><dt>Budget</dt><dd>A rough range</dd></div>
           </dl></div></div>
       </li>
@@ -713,21 +711,18 @@ document.addEventListener('click', e => {
 /* ================= home page ================= */
 /* ================= data ================= */
 const PRODUCTS = [
-  { id:'starburst-no-1', n:1, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, desc:'My show-off. A big radial burst in warm neutrals — the piece everybody points at first.' },
-  { id:'cobalt-study', n:2, name:'Framed handmade brown filet crochet sea shell wall art', price:37.45, desc:'A moody little number in deep blue. Small but mighty — likes a quiet wall.' },
-  { id:'radial-bloom', n:3, name:'Framed handmade brown filet crochet sand dollar wall art', price:37.45, desc:'Like a flower, if flowers were made of yarn and opinions.' },
-  { id:'hearth-frame', n:4, name:'Framed handmade brown filet crochet beetle wall art in wooden frame', price:47.95, desc:'Cozy as a quilt, tidy as a frame. An easy first piece for a bare hallway.' },
-  { id:'openwork-study-i', n:5, name:'Brown framed filet crochet abstract flower heart wall art', price:37.45, desc:'Lacy, airy, and a little bit fancy. Catches the afternoon light something lovely.' },
-  { id:'ember-grid', n:6, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, desc:'Warm geometric rows — modern, but make it handmade.' }
+  { id:'starburst-no-1', n:1, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:42.70, desc:'made by me!\nFRAME NOT INCLUDED\nwithout frame. 29.5 cm long x 24.cm tall' },
+  { id:'radial-bloom', n:3, name:'Handmade brown filet crochet sand dollar wall art', price:37.45, desc:'FRAME NOT INCLUDED\nwithout frame: 19.5 cm long x 16 cm tall' },
+  { id:'cobalt-study', n:2, name:'Handmade brown filet crochet sea shell wall art', price:37.45, desc:'made by me!\nFRAME NOT INCLUDED\nwithout frame: 19 cm long x 15.5 cm tall' },
+  { id:'hearth-frame', n:4, name:'Framed handmade brown filet crochet beetle wall art in wooden frame', price:47.95, desc:'made by me!\nFRAME INCLUDED\nwith frame: 27.5 cm long x 38 in tall\nwithout frame: 22 cm long x 30 cm tall' },
+  { id:'openwork-study-i', n:5, name:'Brown framed filet crochet abstract flower heart wall art', price:37.45, desc:'FRAME INCLUDED\nwith frame: 27.5 cm long x 38 in tall\nwithout frame: 22.5 cm long x 23 cm tall' }
 ];
-const DETAILS = ['100% cotton yarn', 'Hand-crocheted & blocked', 'Arrives framed, ready to hang', 'Ships in 3–5 days'];
-/* Piece names are the titles from the Depop listings (the listing is the source). Openwork Study II has no listing yet, so it keeps its working name.
+/* Names, prices, descriptions, tags and colors are read from the Depop listings (the listing is the source).
    Where each piece lives on Depop. Several site photos show the same design, so some share a listing.
    Anything without a confirmed listing falls back to the shop page. */
 const DEPOP_SHOP = 'https://www.depop.com/chumpchangecrochet/';
 const DEPOP = {
   'starburst-no-1':    'https://www.depop.com/products/chumpchangecdochet-framed-handmade-brown-filet-crochet-15ae/', // butterfly
-  'ember-grid':        'https://www.depop.com/products/chumpchangecdochet-framed-handmade-brown-filet-crochet-15ae/', // butterfly
   'cobalt-study':      'https://www.depop.com/products/chumpchangecrocmet-framed-handmade-brown-filet-crochet-82be/', // sea shell
   'radial-bloom':      'https://www.depop.com/products/chompchangecrochet-framed-handmade-brown-filet-crochet-7857/', // sand dollar
   'hearth-frame':      'https://www.depop.com/products/chuppchangecrochet-framed-handmade-brown-filet-crochet-7457/', // beetle
@@ -751,8 +746,11 @@ function cardHTML(p) {
     </div>
     <div class="pmeta"><h3>${p.name}</h3><span class="price">${money(p.price)}</span></div></article>`;
 }
+/* Latest listings rule. PRODUCTS is the shop's #crochet listings, newest first (the order the Depop shop page shows them).
+   Six or more listings: show six. Fewer than six: show up to three. */
+const SHOWN = PRODUCTS.slice(0, PRODUCTS.length >= 6 ? 6 : Math.min(PRODUCTS.length, 3));
 const grid = $('#grid');
-grid.innerHTML = PRODUCTS.map(cardHTML).join('');
+grid.innerHTML = SHOWN.map(cardHTML).join('');
 $$('.pimg', grid).forEach(ph => {
   const n = +ph.dataset.piece, p = PRODUCTS.find(x => x.n === n);
   const img = fillPhoto(ph, GEN.lqip[n], srcset(n), { sizes: '(max-width:720px) 46vw, (max-width:1020px) 31vw, 290px', alt: p.name + ', crocheted wall art' });
@@ -789,8 +787,7 @@ function openQV(id) {
   img.sizes = '(max-width:1020px) 100vw, 470px'; img.srcset = srcset(p.n);
   img.onload = () => img.classList.add('loaded');
   if (img.complete && img.naturalWidth) img.classList.add('loaded');
-  $('#qvName').textContent = p.name; $('#qvPrice').textContent = money(p.price) || 'See the price on Depop'; $('#qvDesc').textContent = p.desc; $('#qvBuy').href = depopUrl(id);
-  $('#qvDetails').innerHTML = DETAILS.map(d => `<li>${d}</li>`).join('');
+  $('#qvName').textContent = p.name; $('#qvPrice').textContent = money(p.price) || 'See the price on Depop'; $('#qvDesc').textContent = p.desc; $('#qvDesc').hidden = !p.desc; $('#qvBuy').href = depopUrl(id);
   qv.classList.add('open'); qv.setAttribute('aria-hidden', 'false');
   scrim.classList.add('open'); lockPage(true); openLayer = 'qv';
   $('#qvClose').focus({ preventScroll: true });

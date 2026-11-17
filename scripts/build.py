@@ -18,7 +18,7 @@ PAGES = {
     title='Chump Change Crochet',
     desc='One-of-one crocheted wall art, hooked by hand. Handmade in San Francisco.',
     preload='<link rel="preload" as="image" type="image/webp" href="assets/img/hero-1-640.webp" imagesrcset="assets/img/hero-1-640.webp 640w, assets/img/hero-1-1050.webp 1050w" imagesizes="(max-width:900px) 92vw, 560px" fetchpriority="high">\n',
-    skip=('#shop', 'Skip to past work'),
+    skip=('#shop', 'Skip to latest listings'),
     header=dict(HOME_HREF='#top', HOME_HREF_MENU='#shop', STORY_ACTIVE='', STORY_CURRENT='')),
   'about/index.html': dict(src='pages/story.html', js='parts/story.js',
     title='Chump Change Crochet | About',

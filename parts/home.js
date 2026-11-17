@@ -1,20 +1,17 @@
 /* ================= data ================= */
 const PRODUCTS = [
-  { id:'starburst-no-1', n:1, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, desc:'My show-off. A big radial burst in warm neutrals — the piece everybody points at first.' },
-  { id:'cobalt-study', n:2, name:'Framed handmade brown filet crochet sea shell wall art', price:37.45, desc:'A moody little number in deep blue. Small but mighty — likes a quiet wall.' },
-  { id:'radial-bloom', n:3, name:'Framed handmade brown filet crochet sand dollar wall art', price:37.45, desc:'Like a flower, if flowers were made of yarn and opinions.' },
-  { id:'hearth-frame', n:4, name:'Framed handmade brown filet crochet beetle wall art in wooden frame', price:47.95, desc:'Cozy as a quilt, tidy as a frame. An easy first piece for a bare hallway.' },
-  { id:'openwork-study-i', n:5, name:'Brown framed filet crochet abstract flower heart wall art', price:37.45, desc:'Lacy, airy, and a little bit fancy. Catches the afternoon light something lovely.' },
-  { id:'ember-grid', n:6, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:53.20, desc:'Warm geometric rows — modern, but make it handmade.' }
+  { id:'starburst-no-1', n:1, name:'Framed handmade brown filet crochet butterfly wall art in white frame', price:42.70, desc:'made by me!\nFRAME NOT INCLUDED\nwithout frame. 29.5 cm long x 24.cm tall' },
+  { id:'radial-bloom', n:3, name:'Handmade brown filet crochet sand dollar wall art', price:37.45, desc:'FRAME NOT INCLUDED\nwithout frame: 19.5 cm long x 16 cm tall' },
+  { id:'cobalt-study', n:2, name:'Handmade brown filet crochet sea shell wall art', price:37.45, desc:'made by me!\nFRAME NOT INCLUDED\nwithout frame: 19 cm long x 15.5 cm tall' },
+  { id:'hearth-frame', n:4, name:'Framed handmade brown filet crochet beetle wall art in wooden frame', price:47.95, desc:'made by me!\nFRAME INCLUDED\nwith frame: 27.5 cm long x 38 in tall\nwithout frame: 22 cm long x 30 cm tall' },
+  { id:'openwork-study-i', n:5, name:'Brown framed filet crochet abstract flower heart wall art', price:37.45, desc:'FRAME INCLUDED\nwith frame: 27.5 cm long x 38 in tall\nwithout frame: 22.5 cm long x 23 cm tall' }
 ];
-const DETAILS = ['100% cotton yarn', 'Hand-crocheted & blocked', 'Arrives framed, ready to hang', 'Ships in 3–5 days'];
-/* Piece names are the titles from the Depop listings (the listing is the source). Openwork Study II has no listing yet, so it keeps its working name.
+/* Names, prices, descriptions, tags and colors are read from the Depop listings (the listing is the source).
    Where each piece lives on Depop. Several site photos show the same design, so some share a listing.
    Anything without a confirmed listing falls back to the shop page. */
 const DEPOP_SHOP = 'https://www.depop.com/chumpchangecrochet/';
 const DEPOP = {
   'starburst-no-1':    'https://www.depop.com/products/chumpchangecdochet-framed-handmade-brown-filet-crochet-15ae/', // butterfly
-  'ember-grid':        'https://www.depop.com/products/chumpchangecdochet-framed-handmade-brown-filet-crochet-15ae/', // butterfly
   'cobalt-study':      'https://www.depop.com/products/chumpchangecrocmet-framed-handmade-brown-filet-crochet-82be/', // sea shell
   'radial-bloom':      'https://www.depop.com/products/chompchangecrochet-framed-handmade-brown-filet-crochet-7857/', // sand dollar
   'hearth-frame':      'https://www.depop.com/products/chuppchangecrochet-framed-handmade-brown-filet-crochet-7457/', // beetle
@@ -38,8 +35,11 @@ function cardHTML(p) {
     </div>
     <div class="pmeta"><h3>${p.name}</h3><span class="price">${money(p.price)}</span></div></article>`;
 }
+/* Latest listings rule. PRODUCTS is the shop's #crochet listings, newest first (the order the Depop shop page shows them).
+   Six or more listings: show six. Fewer than six: show up to three. */
+const SHOWN = PRODUCTS.slice(0, PRODUCTS.length >= 6 ? 6 : Math.min(PRODUCTS.length, 3));
 const grid = $('#grid');
-grid.innerHTML = PRODUCTS.map(cardHTML).join('');
+grid.innerHTML = SHOWN.map(cardHTML).join('');
 $$('.pimg', grid).forEach(ph => {
   const n = +ph.dataset.piece, p = PRODUCTS.find(x => x.n === n);
   const img = fillPhoto(ph, GEN.lqip[n], srcset(n), { sizes: '(max-width:720px) 46vw, (max-width:1020px) 31vw, 290px', alt: p.name + ', crocheted wall art' });
@@ -76,8 +76,7 @@ function openQV(id) {
   img.sizes = '(max-width:1020px) 100vw, 470px'; img.srcset = srcset(p.n);
   img.onload = () => img.classList.add('loaded');
   if (img.complete && img.naturalWidth) img.classList.add('loaded');
-  $('#qvName').textContent = p.name; $('#qvPrice').textContent = money(p.price) || 'See the price on Depop'; $('#qvDesc').textContent = p.desc; $('#qvBuy').href = depopUrl(id);
-  $('#qvDetails').innerHTML = DETAILS.map(d => `<li>${d}</li>`).join('');
+  $('#qvName').textContent = p.name; $('#qvPrice').textContent = money(p.price) || 'See the price on Depop'; $('#qvDesc').textContent = p.desc; $('#qvDesc').hidden = !p.desc; $('#qvBuy').href = depopUrl(id);
   qv.classList.add('open'); qv.setAttribute('aria-hidden', 'false');
   scrim.classList.add('open'); lockPage(true); openLayer = 'qv';
   $('#qvClose').focus({ preventScroll: true });
