@@ -4,7 +4,7 @@
      short distances, no rotation, no overshoot, nothing loops. */
   :root{
     --cream:#F3F4EA; --cream-2:#E6EAD6; --paper:#FBFCF4;
-    --red:#3F6B4A; --red-dark:#2B4D35;
+    --red:#3F6B4A; --red-dark:#2B4D35; --link-green:#2E7D4A;
     --kraft:#A8B58A; --kraft-dark:#7F8E62;
     --ink:#23301F; --ink-soft:#55634F; --ink-body:#34422F; --line:#D5DCC0;
     --font-serif:'Yeseva One',Georgia,serif;
@@ -66,10 +66,11 @@
   .link{position:relative;text-decoration:none;padding:4px 0;display:inline-block}
   .link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;
     transition:transform var(--fx-slow) var(--ease-emph)}
-  .link:hover::after,.link.active::after{transform:scaleX(1)}
+  .link:hover::after,.link.active::after{transform:scaleX(1);background:var(--link-green)}
+  .link.active::after{height:2px}
   /* links turn green on hover; the current page's link (and its underline) stays green */
   .link,.wordmark,.shop-link,.mobile-menu a{transition:color var(--fx-slow) var(--ease-fx)}
-  .link:hover,.link.active,.wordmark:hover,.shop-link:hover,.mobile-menu a:hover,.mobile-menu a[aria-current="page"]{color:var(--red)}
+  .link:hover,.link.active,.wordmark:hover,.shop-link:hover,.mobile-menu a:hover,.mobile-menu a[aria-current="page"]{color:var(--link-green)}
   .wordmark{font-family:var(--font-hand);font-weight:var(--mw);font-size:calc(33px*var(--mk));letter-spacing:var(--mls);line-height:1;text-decoration:none;color:var(--ink);justify-self:center;white-space:nowrap}
   .nav-right{justify-self:end;display:flex;align-items:center;gap:14px}
   .shop-link{display:inline-flex;align-items:center;gap:6px;color:var(--ink);text-decoration:none;padding:10px 0;position:relative}
