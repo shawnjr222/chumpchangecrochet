@@ -8,7 +8,7 @@ One-of-one crocheted wall art, handmade in San Francisco, by Siena Hooper.
 
 | | |
 |---|---|
-| `index.html`, `story.html` | The site (home and About) |
+| `index.html`, `about/index.html` | The site (home, and About at `/about/`) |
 | `assets/` | Photos |
 | `parts/`, `pages/` | The source the pages are built from |
 | `scripts/` | Build scripts |

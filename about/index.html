@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Our Story — Chump Change Crochet</title>
-<meta name="description" content="Chump Change Crochet started at a folding table in a church basement. Every piece is designed, hooked, blocked, and framed by hand.">
+<meta name="description" content="Chump Change Crochet started about four years ago as a self-taught hobby. Every piece is crocheted and carefully blocked by hand in small batches.">
 <meta name="theme-color" content="#F3F4EA">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233F6B4A'/%3E%3Cpath d='M0 8h32M0 24h32M8 0v32M24 0v32' stroke='%23FBFCF4' stroke-opacity='.5' stroke-width='5'/%3E%3C/svg%3E">
-<script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('ccc-nav')==='1'){sessionStorage.removeItem('ccc-nav');document.documentElement.classList.add('pt-wait')}}catch(e){}if('scrollRestoration' in history)history.scrollRestoration='manual'</script>
+<script>document.documentElement.classList.add('js');document.documentElement.classList.add('pt-wait');if('scrollRestoration' in history)history.scrollRestoration='manual'</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -482,7 +482,7 @@ function fillPhoto(ph, info, set, { sizes, eager = false, alt = '' } = {}) {
 
 /* ================= shared: intro state, chrome intro, hero intro ================= */
 /* The first visit gets the full intro. Moving between pages afterwards only needs a quick fade. */
-const seenIntro = (() => { try { return sessionStorage.getItem('ccc-intro') === '1'; } catch (e) { return false; } })();
+const seenIntro = true;   /* every load, including the very first, uses the same soft dissolve */
 const markSeen = () => { try { sessionStorage.setItem('ccc-intro', '1'); } catch (e) {} };
 const quick = () => seenIntro || reduced();
 function chromeIntro() {

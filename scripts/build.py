@@ -22,7 +22,7 @@ PAGES = {
     header=dict(HOME_HREF='#top', HOME_HREF_MENU='#shop', STORY_ACTIVE='', STORY_CURRENT='')),
   'about/index.html': dict(src='pages/story.html', js='parts/story.js',
     title='Our Story — Chump Change Crochet',
-    desc='Chump Change Crochet started at a folding table in a church basement. Every piece is designed, hooked, blocked, and framed by hand.',
+    desc='Chump Change Crochet started about four years ago as a self-taught hobby. Every piece is crocheted and carefully blocked by hand in small batches.',
     preload='',
     skip=('#story', 'Skip to our story'),
     header=dict(HOME_HREF='/', HOME_HREF_MENU='/', STORY_ACTIVE=' active', STORY_CURRENT=' aria-current="page"')),

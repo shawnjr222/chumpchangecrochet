@@ -43,7 +43,7 @@ function fillPhoto(ph, info, set, { sizes, eager = false, alt = '' } = {}) {
 
 /* ================= shared: intro state, chrome intro, hero intro ================= */
 /* The first visit gets the full intro. Moving between pages afterwards only needs a quick fade. */
-const seenIntro = (() => { try { return sessionStorage.getItem('ccc-intro') === '1'; } catch (e) { return false; } })();
+const seenIntro = true;   /* every load, including the very first, uses the same soft dissolve */
 const markSeen = () => { try { sessionStorage.setItem('ccc-intro', '1'); } catch (e) {} };
 const quick = () => seenIntro || reduced();
 function chromeIntro() {
