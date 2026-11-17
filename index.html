@@ -603,8 +603,8 @@ function heroIntro() {
   const art = $('.hero-art [data-art]'); if (!art) return;
   if (q) {
     art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1000, delay: 200, easing: EASE.fx, fill: 'backwards' });
-    /* the plaid mat dissolves in after the photo, never before it */
-    const mat = $('.hero-art .mat'); if (mat) mat.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, delay: 700, easing: EASE.fx, fill: 'backwards' });
+    /* the plaid mat dissolves in at exactly the same time as the photo */
+    const mat = $('.hero-art .mat'); if (mat) mat.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1000, delay: 200, easing: EASE.fx, fill: 'backwards' });
     return;
   }
   art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, delay: 200, easing: EASE.fx, fill: 'backwards' });
