@@ -24,7 +24,7 @@ PAGES = {
     title='Our Story — Chump Change Crochet',
     desc='Chump Change Crochet started about four years ago as a self-taught hobby. Every piece is crocheted and carefully blocked by hand in small batches.',
     preload='',
-    skip=('#story', 'Skip to our story'),
+    skip=('#story', 'Skip to the story'),
     header=dict(HOME_HREF='/', HOME_HREF_MENU='/', STORY_ACTIVE=' active', STORY_CURRENT=' aria-current="page"')),
 }
 for out, p in PAGES.items():
