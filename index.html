@@ -190,6 +190,7 @@
     opacity:0;transform:translateY(10px);
     transition:opacity var(--fx) var(--ease-fx),transform var(--fx-slow) var(--ease-emph)}
   .pcard:hover .quick,.pcard:focus-visible .quick{opacity:1;transform:none}
+  @media (hover:none){.quick{display:none}}
   .pmeta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:16px}
   .pmeta h3{font-family:var(--font-serif);font-weight:var(--hw);font-size:calc(19px*var(--hs));line-height:1.25}
   .price{font-variant-numeric:tabular-nums;font-weight:500;color:var(--red)}
@@ -346,7 +347,7 @@
     .hero h1{font-size:calc(34px*var(--hs))}
   }
   @media (hover:none){
-    .quick{opacity:1;transform:none;min-height:42px;font-size:12.5px;left:8px;right:8px;bottom:8px}
+    .quick{display:none}   /* no button on phones: the whole card is the tap target */
     .pcard:hover .pimg img{transform:none}
   }
   @media (prefers-reduced-motion:reduce){
